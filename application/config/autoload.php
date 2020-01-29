@@ -58,8 +58,9 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session','form_validation','pagination');
-
+$autoload['libraries'] = array('database','session','form_validation','pagination','template','fungsi');
+//'template' = application/libraries/Template.php
+//'fungsi' = application/libraries/Femplate.php
 /*
 | -------------------------------------------------------------------
 |  Auto-load Drivers
@@ -89,8 +90,8 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','form');
-
+$autoload['helper'] = array('url','form','fungsi');
+// fungsi = application/helpers/fungsi_helper.php
 /*
 | -------------------------------------------------------------------
 |  Auto-load Config files

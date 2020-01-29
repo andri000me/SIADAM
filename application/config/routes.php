@@ -54,11 +54,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Home
 $route['default_controller'] = 'Home';
-$route['index']='Home/index';
-$route['form_Login'] = 'Home/formLogin';
-;// =============================================================
+
+
+// =============================================================
 
 //Controller
+// $route['index']='Home/index';
+// $route['form_Login'] = 'Autentikasi';
+// $route['dashboard'] = 'Autentikasi/login';
 
 // =============================================================
 
