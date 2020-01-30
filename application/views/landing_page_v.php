@@ -16,7 +16,6 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         
         <!-- Script -->
-        
         <script type="text/javascript" src="<?php echo base_url('assets/js/') . 'landing_page.js'?>"></script>
 
         <link rel="icon" type="image/x-icon" sizes="48x48" href="<?php echo base_url('assets/img/') . 'siadampng.png'?>">
@@ -166,7 +165,8 @@
             </div>
             
             <!--- Script Source Files -->
-            <!-- Bootstrap -->
+        
+        <!-- Bootstrap -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
 

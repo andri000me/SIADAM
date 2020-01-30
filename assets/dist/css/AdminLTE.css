@@ -1,14 +1,3 @@
-/*!
- *   AdminLTE v2.4.2
- *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <https://adminlte.io>
- *   License: Open source - MIT
- *           Please visit http://opensource.org/licenses/MIT for more information
- */
-/*
- * Core: General Layout Style
- * -------------------------
- */
 html,
 body {
   height: 100%;
@@ -18,7 +7,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
@@ -158,7 +147,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 /* General Links */
 a {
@@ -290,7 +279,7 @@ a:focus {
   line-height: 50px;
   text-align: center;
   width: 230px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   padding: 0 15px;
   font-weight: 300;
   overflow: hidden;
@@ -1061,6 +1050,7 @@ a:focus {
   margin: 0;
 }
 .navbar-nav > .user-menu > .dropdown-menu {
+  background-image: url("assets/dist/img/photo1.png");
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   padding: 1px 0 0 0;
@@ -1073,6 +1063,7 @@ a:focus {
   border-bottom-left-radius: 4px;
 }
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
+  
   height: 175px;
   padding: 10px;
   text-align: center;

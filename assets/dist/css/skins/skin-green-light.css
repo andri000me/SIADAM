@@ -1,6 +1,6 @@
 /*
  * Skin: Green
- * -----------
+ * ----------- F698A4 EF465B EC1E37 D71C32 81111E
  */
 .skin-green-light .main-header .navbar {
   background-color: #00a65a;
@@ -62,7 +62,7 @@
   background-color: #f9fafc;
 }
 .skin-green-light .main-sidebar {
-  border-right: 1px solid #d2d6de;
+  border-right: 1px solid #EC1E37;
 }
 .skin-green-light .user-panel > .info,
 .skin-green-light .user-panel > .info > a {
@@ -145,6 +145,7 @@
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
 }
+
 @media (min-width: 768px) {
   .skin-green-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
     border-left: 1px solid #d2d6de;

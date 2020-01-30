@@ -34,6 +34,14 @@ class Pegawai_model extends CI_Model {
     return $query;
   }
 
+  public function getPegawaiById($id = null){
+    $this->db->from('pegawai');
+        if($id != null) {
+            $this->db->where('idPegawai', $id);
+        }
+        $query = $this->db->get();
+        return $query;
+  }
   // ------------------------------------------------------------------------
 
 }

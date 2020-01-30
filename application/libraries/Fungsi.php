@@ -11,7 +11,7 @@ Class Fungsi {
     function user_login() {
         $this->ci->load->model('pegawai_model');
         $idPegawai = $this->ci->session->userdata('idPegawai');
-        $user_data = $this->ci->pegawai_model->get($idPegawai)->row();
+        $user_data = $this->ci->pegawai_model->getPegawaiById($idPegawai)->row();
         return $user_data;
     }
 }
