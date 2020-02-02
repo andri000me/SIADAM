@@ -34,7 +34,7 @@ class Pegawai_model extends CI_Model {
     return $query;
   }
 
-  public function getPegawai($id = null){
+  public function getDataPegawai($id = null){
     $this->db->from('pegawai');
         if($id != null) {
             $this->db->where('idPegawai', $id);
@@ -43,7 +43,7 @@ class Pegawai_model extends CI_Model {
         return $query;
   }
 
-  public function addPegawai($post)
+  public function addDataPegawai($post)
     {
         $params['namaPegawai'] = $post['namaPegawai'];
         $params['username'] = $post['username'];
@@ -52,7 +52,7 @@ class Pegawai_model extends CI_Model {
         $this->db->insert('pegawai', $params);
     }
 
-    public function editPegawai($post)
+    public function editDataPegawai($post)
     {
         $params['namaPegawai'] = $post['namaPegawai'];
         $params['username'] = $post['username'];
@@ -64,7 +64,7 @@ class Pegawai_model extends CI_Model {
         $this->db->update('pegawai', $params);
     }
 
-    public function deletePegawai($id)
+    public function deleteDataPegawai($id)
 	{
 		$this->db->where('idPegawai', $id);
 		$this->db->delete('pegawai');

@@ -1,10 +1,10 @@
 <section class="content-header">
   <h1>
-    Kelola Data Pegawai
+    Kelola Data STO
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-    <li class="active">Pegawai</li>
+    <li class="active">STO</li>
   </ol>
 </section>
 
@@ -13,7 +13,7 @@
 
   <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Data Pegawai</h3>
+        <h3 class="box-title">Data STO</h3>
         <div class="pull-right">
             <a href="<?=site_url('pegawai/addPegawai')?>" class="btn btn-primary btn-flat">
                 <i class="fa fa-user-plus"></i> Create 

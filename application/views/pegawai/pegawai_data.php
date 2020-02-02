@@ -15,7 +15,7 @@
       <div class="box-header">
         <h3 class="box-title">Data Pegawai</h3>
         <div class="pull-right">
-            <a href="<?=site_url('pegawai/addPegawai')?>" class="btn btn-primary btn-flat">
+            <a href="<?=site_url('Admin/addPegawai')?>" class="btn btn-primary btn-flat">
                 <i class="fa fa-user-plus"></i> Create 
             </a>
         </div>
@@ -43,8 +43,8 @@
                     <td><?=$data->username?></td>
                     <td><?=$data->status?></td>
                     <td class="text-center" width="160px">
-                      <form action="<?=site_url('pegawai/deletePegawai')?>" method="post">
-                          <a href="<?=site_url('pegawai/editPegawai/'.$data->idPegawai)?>" class="btn btn-primary btn-xs">
+                      <form action="<?=site_url('Admin/deletePegawai')?>" method="post">
+                          <a href="<?=site_url('Admin/editPegawai/'.$data->idPegawai)?>" class="btn btn-primary btn-xs">
                             <i class="fa fa-pencil"></i> Edit 
                           </a>
                           <input type="hidden" name="idPegawai" value="<?=$data->idPegawai?>">

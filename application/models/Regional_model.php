@@ -20,20 +20,39 @@ class Regional_model extends CI_Model {
 
   // ------------------------------------------------------------------------
 
-  public function __construct()
-  {
-    parent::__construct();
-  }
-
   // ------------------------------------------------------------------------
 
-
   // ------------------------------------------------------------------------
-  public function index()
-  {
-    // 
+  public function getDataRegional($id = null){
+    $this->db->from('regional');
+        if($id != null) {
+            $this->db->where('idRegional', $id);
+        }
+        $query = $this->db->get();
+        return $query;
   }
 
+  public function addDataRegional($post)
+    {
+        $params['idRegional'] = $post['idRegional'];
+        $params['namaRegional'] = $post['namaRegional'];
+        $params['keterangan'] = $post['keterangan'];
+        $this->db->insert('regional', $params);
+    }
+
+    public function editDataRegional($post)
+    {
+        $params['namaRegional'] = $post['namaRegional'];
+        $params['keterangan'] = $post['keterangan'];
+        $this->db->where('idRegional;', $post['idRegional']);
+        $this->db->update('regional', $params);
+    }
+
+    public function deleteDataRegional($id)
+    {
+      $this->db->where('idRegional', $id);
+      $this->db->delete('regional');
+    }
   // ------------------------------------------------------------------------
 
 }

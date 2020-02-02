@@ -32,7 +32,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="<?=base_url('dashboard')?>" class="logo">
+    <a href="<?=base_url('Admin')?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">
        <img src="<?=base_url()?>assets/dist/img/50x50.png" class="user-image" alt="User Image">
@@ -193,7 +193,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-location-arrow fa-fw mr-3"></i> STO</a></li>
-            <li><a href="#"><i class="fa fa-flag fa-fw mr-3"></i> Regional</a></li>
+            <li><a href="<?=site_url('Admin/getRegional')?>"><i class="fa fa-flag fa-fw mr-3"></i> Regional</a></li>
             <li><a href="#"><i class="fa fa-tag fa-fw mr-3"></i> Datel</a></li>
             <li><a href="#"><i class="fa fa-map-marker fa-fw mr-3"></i> Witel</a></li>
             <li><a href="#"><i class="fa fa-barcode fa-fw mr-3"></i> Merek</a></li>
@@ -204,7 +204,7 @@
         <?php if($this->fungsi->user_login()->status == 'Admin') { ?>
         <li class="header">SETTNGS</li>
         <li>
-          <a href="<?=site_url('pegawai')?>">
+          <a href="<?=site_url('Admin/getPegawai')?>">
             <i class="fa fa-user-plus"></i> <span>kelola Data Pegawai</span>
             <span class="pull-right-container"></span>
           </a>

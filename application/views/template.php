@@ -204,7 +204,7 @@
         <?php if($this->fungsi->user_login()->status == 'Admin') { ?>
         <li class="header">SETTNGS</li>
         <li>
-          <a href="<?=site_url('pegawai')?>">
+          <a href="<?=site_url('Admin/getDataPegawai')?>">
             <i class="fa fa-user-plus"></i> <span>kelola Data Pegawai</span>
             <span class="pull-right-container"></span>
           </a>

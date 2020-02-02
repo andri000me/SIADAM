@@ -42,8 +42,8 @@ class Autentikasi extends CI_Controller
         echo 
         "<script>
           alert('Selamat, Login Berhasil');
-          window.location='".site_url('Dashboard')."';
         </script>";
+        redirect(base_url() . 'Admin');
       }else{
         die(
           "<script>
