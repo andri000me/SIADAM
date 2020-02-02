@@ -12,6 +12,6 @@
 <!-- Main content -->
 <section class="content">
 
-  Dashboard Page
+
 
 </section>

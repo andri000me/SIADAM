@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Data Tables -->
+  <link rel="stylesheet" href="<?=base_url()?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -22,7 +24,7 @@
 
   <!-- Google Font -->
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,300italic,400italic,600italic" > -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600i,700i&display=swap" rel="stylesheet">
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
 <!-- Site wrapper -->
@@ -123,7 +125,7 @@
     <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header"></li>
+        <!-- <li class="header"></li> -->
         <li class="treeview">
           <a href="<?=site_url('dashboard')?>">
             <i class="fa fa-bar-chart"></i> <span>Dashboard</span>
@@ -138,13 +140,13 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-file"></i> <span>Kelola Data Validasi</span>
+            <i class="fa fa-cog"></i> <span>Kelola Data Validasi</span>
             <span class="pull-right-container"></span>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-check-square"></i>
+            <i class="fa fa-tasks"></i>
             <span>Validasi</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -199,9 +201,9 @@
             <li><a href="#"><i class="fa fa-wrench fa-fw mr-3"></i> Specification OLT</a></li>
         </ul>
         </li>
-        <?php if($this->session->userdata('status') == 'Admin') { ?>
-        <li class="header d">SETTNGS</li>
-        <li class="treeview">
+        <?php if($this->fungsi->user_login()->status == 'Admin') { ?>
+        <li class="header">SETTNGS</li>
+        <li>
           <a href="<?=site_url('pegawai')?>">
             <i class="fa fa-user-plus"></i> <span>kelola Data Pegawai</span>
             <span class="pull-right-container"></span>
@@ -242,6 +244,15 @@
 <script src="<?=base_url()?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>assets/dist/js/adminlte.min.js"></script>
+
+<script src="<?=base_url()?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?=base_url()?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('#table1').DataTable()
+})
+</script>
 
 </body>
 </html>

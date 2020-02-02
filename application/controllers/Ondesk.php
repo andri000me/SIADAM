@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
- * Controller Dashboard
+ * Controller Ondesk
  *
  * This controller for ...
  *
@@ -18,17 +18,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-class Dashboard extends CI_Controller
+class Ondesk extends CI_Controller
 {
     
+  public function __construct()
+  {
+    parent::__construct();
+  }
+
   public function index()
   {
-    check_not_login();
-    $this->template->load('template', 'dashboard_home');
+    // 
   }
 
 }
 
 
-/* End of file Dashboard.php */
-/* Location: ./application/controllers/Dashboard.php */
+/* End of file Ondesk.php */
+/* Location: ./application/controllers/Ondesk.php */

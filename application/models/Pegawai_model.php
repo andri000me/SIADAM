@@ -34,7 +34,7 @@ class Pegawai_model extends CI_Model {
     return $query;
   }
 
-  public function getPegawaiById($id = null){
+  public function getPegawai($id = null){
     $this->db->from('pegawai');
         if($id != null) {
             $this->db->where('idPegawai', $id);
@@ -42,6 +42,33 @@ class Pegawai_model extends CI_Model {
         $query = $this->db->get();
         return $query;
   }
+
+  public function addPegawai($post)
+    {
+        $params['namaPegawai'] = $post['namaPegawai'];
+        $params['username'] = $post['username'];
+        $params['password'] = $post['password'];
+        $params['status'] = $post['status'];
+        $this->db->insert('pegawai', $params);
+    }
+
+    public function editPegawai($post)
+    {
+        $params['namaPegawai'] = $post['namaPegawai'];
+        $params['username'] = $post['username'];
+        if(!empty($post['password'])) {
+            $params['password'] = ($post['password']);
+        }
+        $params['status'] = $post['status'];
+        $this->db->where('idPegawai', $post['idPegawai']);
+        $this->db->update('pegawai', $params);
+    }
+
+    public function deletePegawai($id)
+	{
+		$this->db->where('idPegawai', $id);
+		$this->db->delete('pegawai');
+	}
   // ------------------------------------------------------------------------
 
 }
