@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2020 at 02:47 AM
+-- Generation Time: Feb 03, 2020 at 03:07 PM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -39,30 +39,12 @@ CREATE TABLE `datel` (
 --
 
 INSERT INTO `datel` (`idDatel`, `namaDatel`, `keterangan`) VALUES
+('K11', 'Kandel', 'Angga123 Angga'),
 ('K2', 'Kendal', ''),
+('K3', 'New', 'New_Update'),
+('K4', 'Angga', 'Angga 123'),
 ('S1', 'Semarang', ''),
 ('U3', 'Ungaran', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `merek_olt`
---
-
-CREATE TABLE `merek_olt` (
-  `idMerek` varchar(6) NOT NULL,
-  `namaMerek` varchar(20) NOT NULL,
-  `keterangan` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `merek_olt`
---
-
-INSERT INTO `merek_olt` (`idMerek`, `namaMerek`, `keterangan`) VALUES
-('merk1', 'ZTE', NULL),
-('merk2', 'Huawei', NULL),
-('merk3', 'ALU', NULL);
 
 -- --------------------------------------------------------
 
@@ -72,7 +54,6 @@ INSERT INTO `merek_olt` (`idMerek`, `namaMerek`, `keterangan`) VALUES
 
 CREATE TABLE `pegawai` (
   `idPegawai` int(11) NOT NULL,
-  `NIP` varchar(18) NOT NULL,
   `namaPegawai` varchar(30) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(16) NOT NULL,
@@ -83,22 +64,26 @@ CREATE TABLE `pegawai` (
 -- Dumping data for table `pegawai`
 --
 
-INSERT INTO `pegawai` (`idPegawai`, `NIP`, `namaPegawai`, `username`, `password`, `status`) VALUES
-(1, '1', 'AdminA', 'admin123', 'admin123', 'Admin'),
-(2, '2', 'AdminB', 'admin234', 'admin234', 'Admin'),
-(3, '13', 'DamanA', 'daman123', 'daman123', 'Daman'),
-(4, '14', 'DamanB', 'daman234', 'daman234', 'Daman'),
-(5, '11', 'DavaA', 'dava123', 'dava123', 'Dava'),
-(6, '12', 'DavaB', 'dava234', 'dava234', 'Dava'),
-(7, '9', 'HDDamanA', 'hddaman123', 'hddaman123', 'HD Daman'),
-(8, '10', 'HDDamanB', 'hddaman234', 'hddaman234', 'HD Daman'),
-(9, '5', 'OndeskA', 'ondesk123', 'ondesk123', 'Ondesk'),
-(10, '6', 'OndeskB', 'ondesk234', 'ondesk234', 'Ondesk'),
-(11, '3', 'OnsiteA', 'onsite123', 'onsite123', 'Onsite'),
-(12, '4', 'OnsiteB', 'onsite234', 'onsite234', 'Onsite'),
-(13, '7', 'SDIA', 'sdi123', 'sdi123', 'SDI'),
-(14, '8', 'SDIB', 'sdi234', 'sdi234', 'SDI'),
-(17, '', '<h1>Angga</h1>', '<h1>Angga</h1>', '12345', 'Daman');
+INSERT INTO `pegawai` (`idPegawai`, `namaPegawai`, `username`, `password`, `status`) VALUES
+(1, 'AdminA', 'admin123', 'admin123', 'Admin'),
+(2, 'AdminB', 'admin234', 'admin234', 'Admin'),
+(3, 'DamanA', 'daman123', 'daman123', 'Daman'),
+(4, 'DamanB', 'daman234', 'daman234', 'Daman'),
+(5, 'DavaA', 'dava123', 'dava123', 'Dava'),
+(6, 'DavaB', 'dava234', 'dava234', 'Dava'),
+(7, 'HDDamanA', 'hddaman123', 'hddaman123', 'HD Daman'),
+(8, 'HDDamanB', 'hddaman234', 'hddaman234', 'HD Daman'),
+(9, 'OndeskA', 'ondesk123', 'ondesk123', 'Ondesk'),
+(10, 'OndeskB', 'ondesk234', 'ondesk234', 'Ondesk'),
+(11, 'OnsiteA', 'onsite123', 'onsite123', 'Onsite'),
+(12, 'OnsiteB', 'onsite234', 'onsite234', 'Onsite'),
+(13, 'SDIA', 'sdi123', 'sdi123', 'SDI'),
+(14, 'SDIB', 'sdi234', 'sdi234', 'SDI'),
+(17, '<h1>Angga</h1>', '<h1>Angga</h1>', '12345', 'Daman'),
+(20, 'Anggaaa', 'anggaaaaa', 'angga', 'HD Daman'),
+(21, '&lt;h1&gt;Angga&lt;/h1&gt;', '&lt;h1&gt;Angg&lt;/h', '12345', 'Dava'),
+(22, '&lt;h1&gt;Anggaa&lt;/h1&gt;', '&lt;h1&gt;Anggaa&lt;', '&lt;h1&gt;Anggaa', 'Dava'),
+(23, 'Angga Dharma Iswara', 'angga', 'angga', 'Ondesk');
 
 -- --------------------------------------------------------
 
@@ -179,55 +164,14 @@ INSERT INTO `rekap_data_olt` (`hostname`, `ipOLT`, `idSTO`, `idLogicalDevice`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekap_data_validasi`
---
-
-CREATE TABLE `rekap_data_validasi` (
-  `tanggal_pelurusan` datetime NOT NULL,
-  `idOndesk` varchar(18) NOT NULL,
-  `idOnsite1` varchar(18) NOT NULL,
-  `idOnsite2` varchar(18) NOT NULL,
-  `idODP` varchar(16) NOT NULL,
-  `noteODP` varchar(50) DEFAULT NULL,
-  `QRODP` varchar(16) DEFAULT NULL,
-  `koordinatODP` varchar(25) DEFAULT NULL,
-  `hostname` varchar(16) NOT NULL,
-  `portOLT` varchar(10) DEFAULT NULL,
-  `totalIN` varchar(2) DEFAULT NULL,
-  `kapasitasODP` varchar(2) DEFAULT NULL,
-  `portOutSplitter` varchar(8) DEFAULT NULL,
-  `QROutSplitter` varchar(16) DEFAULT NULL,
-  `portODP` varchar(2) DEFAULT NULL,
-  `statusportODP` varchar(35) DEFAULT NULL,
-  `ONU` varchar(25) DEFAULT NULL,
-  `serialNumber` varchar(25) DEFAULT NULL,
-  `serviceNumber` varchar(16) DEFAULT NULL,
-  `QRDropCore` varchar(40) DEFAULT NULL,
-  `noteDropCore` varchar(75) DEFAULT NULL,
-  `flagOLTPort` varchar(30) DEFAULT NULL,
-  `ODPtoOLT` varchar(40) DEFAULT NULL,
-  `ODPtoONT` varchar(35) DEFAULT NULL,
-  `RFS` varchar(35) DEFAULT NULL,
-  `noteHDDaman` varchar(75) DEFAULT NULL,
-  `updateDateUIM` datetime DEFAULT NULL,
-  `updaterUIM` varchar(18) DEFAULT 'NULL',
-  `noteQRODP` varchar(45) DEFAULT NULL,
-  `noteQROutSplitter` varchar(45) DEFAULT NULL,
-  `noteQRDropCore` varchar(45) DEFAULT NULL,
-  `updaterDava` varchar(18) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `specification_olt`
 --
 
 CREATE TABLE `specification_olt` (
   `idSpecOLT` varchar(6) NOT NULL,
   `namaSpecOLT` varchar(50) NOT NULL,
-  `merekOLT` varchar(6) NOT NULL,
-  `typeOLT` varchar(6) DEFAULT NULL,
+  `merekOLT` varchar(20) DEFAULT NULL,
+  `typeOLT` varchar(20) DEFAULT NULL,
   `keterangan` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -256,32 +200,14 @@ CREATE TABLE `sto` (
 --
 
 INSERT INTO `sto` (`idSTO`, `namaSTO`, `keterangan`) VALUES
-('ABR', 'Ambarawa', NULL),
+('ABR', 'Ambarawa', ''),
 ('GNK', 'Semarang Genuk', NULL),
 ('KDL', 'Kendal', NULL),
 ('MKG', 'Semarang Mangkang', NULL),
-('SMC', 'Semarang Candi', NULL),
-('SMT', 'Semarang Tugu', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `type_olt`
---
-
-CREATE TABLE `type_olt` (
-  `idTypeOLT` varchar(6) NOT NULL,
-  `typeOLT` varchar(20) NOT NULL,
-  `keterangan` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `type_olt`
---
-
-INSERT INTO `type_olt` (`idTypeOLT`, `typeOLT`, `keterangan`) VALUES
-('type1', 'C300', ''),
-('type2', 'C300.v.2.0', '');
+('SMC', 'Sekolah Menengah', ''),
+('SMK', 'Sekolah', ''),
+('SMR', 'Semarang RangRANG', ''),
+('SMT', 'Semarang Tugu', '');
 
 -- --------------------------------------------------------
 
@@ -313,19 +239,11 @@ ALTER TABLE `datel`
   ADD PRIMARY KEY (`idDatel`);
 
 --
--- Indexes for table `merek_olt`
---
-ALTER TABLE `merek_olt`
-  ADD PRIMARY KEY (`idMerek`),
-  ADD UNIQUE KEY `namaMerek` (`namaMerek`);
-
---
 -- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`idPegawai`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `NIP` (`NIP`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `regional`
@@ -352,37 +270,16 @@ ALTER TABLE `rekap_data_olt`
   ADD KEY `spec` (`idSpecOLT`);
 
 --
--- Indexes for table `rekap_data_validasi`
---
-ALTER TABLE `rekap_data_validasi`
-  ADD KEY `ondesk` (`idOndesk`),
-  ADD KEY `onsite1` (`idOnsite1`),
-  ADD KEY `onsite2` (`idOnsite2`),
-  ADD KEY `ODP` (`idODP`),
-  ADD KEY `hostname` (`hostname`),
-  ADD KEY `Dava` (`updaterDava`),
-  ADD KEY `UIM` (`updaterUIM`);
-
---
 -- Indexes for table `specification_olt`
 --
 ALTER TABLE `specification_olt`
-  ADD PRIMARY KEY (`idSpecOLT`),
-  ADD KEY `type` (`typeOLT`),
-  ADD KEY `merek` (`merekOLT`);
+  ADD PRIMARY KEY (`idSpecOLT`);
 
 --
 -- Indexes for table `sto`
 --
 ALTER TABLE `sto`
   ADD PRIMARY KEY (`idSTO`);
-
---
--- Indexes for table `type_olt`
---
-ALTER TABLE `type_olt`
-  ADD PRIMARY KEY (`idTypeOLT`),
-  ADD UNIQUE KEY `typeOLT` (`typeOLT`);
 
 --
 -- Indexes for table `witel`
@@ -398,7 +295,7 @@ ALTER TABLE `witel`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `idPegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idPegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables
@@ -420,25 +317,6 @@ ALTER TABLE `rekap_data_olt`
   ADD CONSTRAINT `sentralTO` FOREIGN KEY (`idSTO`) REFERENCES `sto` (`idSTO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `spec` FOREIGN KEY (`idSpecOLT`) REFERENCES `specification_olt` (`idSpecOLT`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `sto` FOREIGN KEY (`idSTO`) REFERENCES `sto` (`idSTO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `rekap_data_validasi`
---
-ALTER TABLE `rekap_data_validasi`
-  ADD CONSTRAINT `Dava` FOREIGN KEY (`updaterDava`) REFERENCES `pegawai` (`NIP`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ODP` FOREIGN KEY (`idODP`) REFERENCES `rekap_data_odp` (`idODP`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `UIM` FOREIGN KEY (`updaterUIM`) REFERENCES `pegawai` (`NIP`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `hostname` FOREIGN KEY (`hostname`) REFERENCES `rekap_data_olt` (`hostname`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ondesk` FOREIGN KEY (`idOndesk`) REFERENCES `pegawai` (`NIP`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `onsite1` FOREIGN KEY (`idOnsite1`) REFERENCES `pegawai` (`NIP`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `onsite2` FOREIGN KEY (`idOnsite2`) REFERENCES `pegawai` (`NIP`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `specification_olt`
---
-ALTER TABLE `specification_olt`
-  ADD CONSTRAINT `merek` FOREIGN KEY (`merekOLT`) REFERENCES `merek_olt` (`idMerek`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `type` FOREIGN KEY (`typeOLT`) REFERENCES `type_olt` (`idTypeOLT`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
