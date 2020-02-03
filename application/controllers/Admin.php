@@ -27,6 +27,7 @@ class Admin extends CI_Controller
 		check_not_login();
 		//check admin buat fungsi_helper
 		check_admin();
+<<<<<<< HEAD
 		$this->load->model('Pegawai_model');
 		$this->load->model('Regional_model');
 		$this->load->model('STO_model');
@@ -36,6 +37,12 @@ class Admin extends CI_Controller
 		// $this->load->model('TypeOLT_model');
 		$this->load->model('SpecOLT_model');
 		$this->load->library('form_validation');
+=======
+    $this->load->model('Pegawai_model');
+	$this->load->model('Regional_model');
+	$this->load->model('STO_model');
+	$this->load->library('form_validation');
+>>>>>>> origin
   }
 
   // Halaman Awal Admin
