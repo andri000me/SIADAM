@@ -45,7 +45,7 @@ class Admin extends CI_Controller
     $this->template->load('template/template_Admin', 'dashboard_home');
   }
 
-  // Menu Pegawai 
+  // Start Menu Pegawai 
 	public function getPegawai()
 	{
 		$data['row'] = $this->Pegawai_model->getDataPegawai();
@@ -153,7 +153,7 @@ class Admin extends CI_Controller
   }
   // End Menu Pegawai
   
-  // Menu STO
+  // Start Menu STO
   public function getSTO()
 	{
 		$data['row'] = $this->STO_model->getDataSTO();
@@ -232,7 +232,7 @@ class Admin extends CI_Controller
 
   // End Menu STO
 
-  // Menu Regional
+  // Start Menu Regional
   public function getRegional()
 	{
 		$data['row'] = $this->Regional_model->getDataRegional();
@@ -280,7 +280,7 @@ class Admin extends CI_Controller
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
 		if ($this->form_validation->run() == FALSE) {
-			$query = $this->Regional_model->getDataSTO($id);
+			$query = $this->Regional_model->getDataRegional($id);
 			if($query->num_rows() > 0) { 
 				$data['row'] = $query->row();
         $this->template->load('template/template_Admin', 'sto/sto_form_edit', $data);
@@ -290,7 +290,7 @@ class Admin extends CI_Controller
 			}
 		} else {
 			$post = $this->input->post(null, TRUE);
-			$this->STO_model->editDataSTO($post);
+			$this->Regional_model->editDataSTO($post);
 			if($this->db->affected_rows() > 0) {
 				echo "<script>alert('Data berhasil disimpan');</script>";
 			}
@@ -298,15 +298,15 @@ class Admin extends CI_Controller
 		}
 	}
 
-	public function deleteSTO()
+	public function deleteRegional()
 	{
-		$id = $this->input->post('idSTO');
+		$id = $this->input->post('idRegional');
 		$this->STO_model->deleteDataSTO($id);
 
 		if($this->db->affected_rows() > 0) {
 			echo "<script>alert('Data berhasil dihapus');</script>";
 		}
-		echo "<script>window.location='".site_url('Admin/getSTO')."';</script>";
+		echo "<script>window.location='".site_url('Admin/getRegional')."';</script>";
   }
   // End Menu Regional
 
