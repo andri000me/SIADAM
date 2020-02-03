@@ -28,7 +28,7 @@
                     <div class="form-group <?=form_error('idSTO') ? 'has-error' : null?>">
                         <label>ID STO *</label>
                         <input type="hidden" name="idSTO" value="<?=$row->idSTO?>">
-                        <input type="text" name="idSTO" value="<?=$this->input->post('idSTO') ?? $row->idSTO?>" class="form-control"> 
+                        <input type="text" name="idSTO" value="<?=$this->input->post('idSTO') ?? $row->idSTO?>" class="form-control" disabled> 
                         <?=form_error('idSTO')?>
                     </div>
                     <div class="form-group <?=form_error('namaSTO') ? 'has-error' : null?>">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group <?=form_error('keterangan') ? 'has-error' : null ?>">
                             <label>Keterangan</label>
-                            <textarea name="keterangan" class="form-control" rows="3" value="<?=$row->keterangan?>" ></textarea>
+                            <textarea name="keterangan" class="form-control" rows="3"><?php echo $this->input->post('keterangan') ?? $row->keterangan?></textarea>
                             <?=form_error('keterangan')?>
                         </div>
                     <div class="form-group">

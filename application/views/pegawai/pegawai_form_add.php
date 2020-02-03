@@ -64,6 +64,7 @@
                         <button type="submit" class="btn btn-success btn-flat">
                             <i class="fa fa-paper-plane"></i> Simpan
                         </button>
+                        <!-- reset error ketika sudah submit -->
                         <button type="reset" class="btn btn-flat">Reset</button>
                     </div>
                 </form>

@@ -26,7 +26,6 @@
               <thead>
                 <tr>
                     <th>ID Regional</th>
-                    <!-- <th>NIP</th> -->
                     <th>Nama Regional</th>
                     <th>Keterangan</th>
                     <th>Actions</th>
