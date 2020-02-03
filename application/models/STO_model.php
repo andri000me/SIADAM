@@ -19,20 +19,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class STO_model extends CI_Model {
 
   // ------------------------------------------------------------------------
-
-  public function __construct()
-  {
-    parent::__construct();
+  public function getDataSTO($id = null){
+    $this->db->from('sto');
+        if($id != null) {
+            $this->db->where('idSTO', $id);
+        }
+        $query = $this->db->get();
+        return $query;
   }
 
-  // ------------------------------------------------------------------------
+  public function addDataSTO($post)
+    {
+        $params['idSTO'] = html_escape($post['idSTO']);
+        $params['namaSTO'] = html_escape($post['namaSTO']);
+        $params['keterangan'] = html_escape($post['keterangan']);
+        $this->db->insert('sto', $params);
+    }
 
+    public function editDataSTO($post)
+    {
+        $params['namaSTO'] = html_escape($post['namaSTO']);
+        $params['keterangan'] = html_escape($post['keterangan']);
+        $this->db->where('idSTO', $post['idSTO']);
+        $this->db->update('sto', $params);
+    }
 
-  // ------------------------------------------------------------------------
-  public function index()
-  {
-    // 
-  }
+    public function deleteDataSTO($id)
+	{
+		$this->db->where('idSTO', $id);
+		$this->db->delete('sto');
+	}
 
   // ------------------------------------------------------------------------
 
