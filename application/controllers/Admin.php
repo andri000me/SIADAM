@@ -27,9 +27,14 @@ class Admin extends CI_Controller
 		check_not_login();
 		//check admin buat fungsi_helper
 		check_admin();
+<<<<<<< HEAD
     $this->load->model('Pegawai_model');
 	$this->load->model('Regional_model');
 	$this->load->model('STO_model');
+=======
+		$this->load->model('Pegawai_model');
+		$this->load->model('Regional_model');
+>>>>>>> refs/remotes/origin/master
 		$this->load->library('form_validation');
   }
 
@@ -49,17 +54,20 @@ class Admin extends CI_Controller
 
 	public function addPegawai()
 	{
-		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required');
-		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[pegawai.username]');
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-		$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|matches[password]',
+		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required|alpha_numeric_spaces|max_length[30]|trim');
+		$this->form_validation->set_rules('username', 'Username', 'required|alpha_numeric|is_unique[pegawai.username]|min_length[5]|max_length[20]|trim');
+		$this->form_validation->set_rules('password', 'Password', 'required|alpha_numeric|min_length[5]|max_length[16]|trim');
+		$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|matches[password]|alpha_numeric|min_length[5]|max_length[16]|trim',
 			array('matches' => '%s tidak sesuai dengan password')
 		);
-		$this->form_validation->set_rules('status', 'Status', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required|trim');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		// $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_numeric_spaces', '{field} berisi karakter');
+		$this->form_validation->set_message('alpha_numeric', '{field} berisi karakter dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -77,23 +85,23 @@ class Admin extends CI_Controller
 
 	public function editPegawai($id)
 	{
-		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required');
-		$this->form_validation->set_rules('username', 'Username', 'required|callback_username_check');
+		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required|alpha_numeric_spaces|min_length[0]|max_length[30]|trim');
+		$this->form_validation->set_rules('username', 'Username', 'required|alpha_numeric|callback_username_check|min_length[5]|max_length[20]|trim');
 		if($this->input->post('password')) {
-			$this->form_validation->set_rules('password', 'Password', 'min_length[5]');
-			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]',
+			$this->form_validation->set_rules('password', 'Password', 'alpha_numeric|min_length[5]|max_length[16]|trim');
+			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]|alpha_numeric|min_length[5]|max_length[16]|trim',
 				array('matches' => '%s tidak sesuai dengan password')
 			);
 		}
 		if($this->input->post('passconf')) {
-			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]',
+			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]|alpha_numeric|min_length[5]|max_length[16]|trim',
 				array('matches' => '%s tidak sesuai dengan password')
 			);
 		}
 		$this->form_validation->set_rules('status', 'Status', 'required');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		// $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
@@ -235,13 +243,9 @@ class Admin extends CI_Controller
 
 	public function addRegional()
 	{
-		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required');
-		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[pegawai.username]');
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-		$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|matches[password]',
-			array('matches' => '%s tidak sesuai dengan password')
-		);
-		$this->form_validation->set_rules('status', 'Status', 'required');
+		$this->form_validation->set_rules('idRegional', 'idReg', 'required|is_unique[regional.idRegional]');
+		$this->form_validation->set_rules('namaRegional', 'namaReg', 'required|is_unique[regional.namaRegional]');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', '');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
 		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
