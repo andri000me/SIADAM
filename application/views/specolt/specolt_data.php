@@ -3,7 +3,7 @@
     Kelola Data Specification OLT
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+    <li><a href="#"><i class="fa fa-wrench"></i></a></li>
     <li class="active">Specification OLT</li>
   </ol>
 </section>

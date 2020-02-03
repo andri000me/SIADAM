@@ -3,7 +3,7 @@
     Kelola Data STO
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+    <li><a href="#"><i class="fa fa-location-arrow"></i></a></li>
     <li class="active">STO</li>
   </ol>
 </section>
