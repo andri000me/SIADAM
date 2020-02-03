@@ -164,13 +164,14 @@ class Admin extends CI_Controller
 	{
 		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|min_length[3]|max_length[5]|is_unique[sto.idSTO]|regex_match[/^[A-Z]{3,}+$/]|trim');
 		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
 		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
 		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
 		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -190,13 +191,14 @@ class Admin extends CI_Controller
 	{
 		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|regex_match[/^[A-Z]+$/]|min_length[3]|max_length[5]|trim');
 		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
 		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
 		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
 		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -243,13 +245,14 @@ class Admin extends CI_Controller
 	{
 		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{2,}+$/]|trim');
 		$this->form_validation->set_rules('namaRegional', 'Nama Regional', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
 		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
 		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
 		$this->form_validation->set_message('regex_match', '{field} berisi karakter dan numerik');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -269,13 +272,14 @@ class Admin extends CI_Controller
 	{
 		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|regex_match[/^[A-Z0-9]{2,}+$/]|min_length[2]|max_length[5]|trim');
 		$this->form_validation->set_rules('namaRegional', 'Nama Regional', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
 		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
 		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
 		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -303,7 +307,7 @@ class Admin extends CI_Controller
 	public function deleteRegional()
 	{
 		$id = $this->input->post('idRegional');
-		$this->STO_model->deleteDataRegional($id);
+		$this->Regional_model->deleteDataRegional($id);
 
 		if($this->db->affected_rows() > 0) {
 			echo "<script>alert('Data berhasil dihapus');</script>";
@@ -312,7 +316,7 @@ class Admin extends CI_Controller
   }
   // End Menu Regional
 
-  // Start Menu Datel : menu edit kalo sama belom bisa 
+  // Start Menu Datel
 
   public function getDatel()
 	{
@@ -322,13 +326,16 @@ class Admin extends CI_Controller
 
 	public function addDatel()
 	{
-		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required');
-		$this->form_validation->set_rules('namaDatel', 'Nama Datel', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan');
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{2,}+$/]|trim');
+		$this->form_validation->set_rules('namaDatel', 'Nama Datel', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter dan numerik');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -347,13 +354,16 @@ class Admin extends CI_Controller
 	public function editDatel($id)
 	{
 		
-		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required');
-		$this->form_validation->set_rules('namaDatel', 'Nama Datel', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan');
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{2,}+$/]|trim');
+		$this->form_validation->set_rules('namaDatel', 'Nama Datel', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter dan numerik');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -375,16 +385,6 @@ class Admin extends CI_Controller
 			echo "<script>window.location='".site_url('Admin/getDatel')."';</script>";
 		}
 	}
-	// function STO_check() {
-	// 	$post = $this->input->post(null, TRUE);
-	// 	$query = $this->db->query("SELECT * FROM sto WHERE idSTO = '$post[idSTO]' AND namaSTO != '$post[namaSTO]'");
-	// 	if($query->num_rows() > 0) {
-	// 		$this->form_validation->set_message('STO_check', '{field} ini sudah dipakai, silahkan ganti');
-	// 		return FALSE;
-	// 	} else {
-	// 		return TRUE;
-	// 	}
-	// }
 
 	public function deleteDatel()
 	{
@@ -398,7 +398,7 @@ class Admin extends CI_Controller
   }
   // End Menu Datel
 
-// Start Menu Witel : menu edit kalo sama belom bisa 
+// Start Menu Witel 
 
 	public function getWitel()
 	{
@@ -408,13 +408,16 @@ class Admin extends CI_Controller
 
 	public function addWitel()
 	{
-		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required');
-		$this->form_validation->set_rules('namaWitel', 'Nama Witel', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan');
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|min_length[4]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{4,}+$/]|trim');
+		$this->form_validation->set_rules('namaWitel', 'Nama Witel', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter dan numerik');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -433,13 +436,16 @@ class Admin extends CI_Controller
 	public function editWitel($id)
 	{
 		
-		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required');
-		$this->form_validation->set_rules('namaWitel', 'Nama Witel', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan');
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|regex_match[/^[A-Z0-9]{4,}+$/]|min_length[4]|max_length[5]|trim');
+		$this->form_validation->set_rules('namaWitel', 'Nama Witel', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -461,16 +467,6 @@ class Admin extends CI_Controller
 			echo "<script>window.location='".site_url('Admin/getWitel')."';</script>";
 		}
 	}
-	// function STO_check() {
-	// 	$post = $this->input->post(null, TRUE);
-	// 	$query = $this->db->query("SELECT * FROM sto WHERE idSTO = '$post[idSTO]' AND namaSTO != '$post[namaSTO]'");
-	// 	if($query->num_rows() > 0) {
-	// 		$this->form_validation->set_message('STO_check', '{field} ini sudah dipakai, silahkan ganti');
-	// 		return FALSE;
-	// 	} else {
-	// 		return TRUE;
-	// 	}
-	// }
 
 	public function deleteWitel()
 	{
@@ -484,7 +480,7 @@ class Admin extends CI_Controller
 	}
 	// End Menu Witel
 
-	// Start Menu Specification OLT : menu edit kalo sama belom bisa 
+	// Start Menu Specification OLT 
 
 	public function getSpecOLT()
 	{
@@ -494,15 +490,18 @@ class Admin extends CI_Controller
 
 	public function addSpecOLT()
 	{
-		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required');
-		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required');
-		$this->form_validation->set_rules('merekOLT', 'Merek OLT');
-		$this->form_validation->set_rules('typeOLT', 'Type OLT');
-		$this->form_validation->set_rules('keterangan', 'Keterangan');
+		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required|min_length[4]|max_length[6]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{4,}+$/]|trim');
+		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required|regex_match[/^[-a-zA-Z0-9 ]{,50}+$/]|max_length[50]|trim');
+		$this->form_validation->set_rules('merekOLT', 'Merek OLT', 'regex_match[/^[a-zA-Z ]{,20}+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('typeOLT', 'Type OLT', 'regex_match[/^[.a-zA-Z0-9 ]{,20}+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter dan numerik');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -521,15 +520,18 @@ class Admin extends CI_Controller
 	public function editSpecOLT($id)
 	{
 		
-		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required');
-		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required');
-		$this->form_validation->set_rules('merekOLT', 'Merek OLT');
-		$this->form_validation->set_rules('typeOLT', 'Type OLT');
-		$this->form_validation->set_rules('keterangan', 'Keterangan');
+		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required|min_length[4]|max_length[6]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{4,}+$/]|trim');
+		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required|regex_match[/^[-a-zA-Z0-9 ]{,50}+$/]|max_length[50]|trim');
+		$this->form_validation->set_rules('merekOLT', 'Merek OLT', 'regex_match[/^[a-zA-Z ]{,20}+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('typeOLT', 'Type OLT', 'regex_match[/^[.a-zA-Z0-9 ]{,20}+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter dan numerik');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -551,16 +553,6 @@ class Admin extends CI_Controller
 			echo "<script>window.location='".site_url('Admin/getSpecOLT')."';</script>";
 		}
 	}
-	// function STO_check() {
-	// 	$post = $this->input->post(null, TRUE);
-	// 	$query = $this->db->query("SELECT * FROM sto WHERE idSTO = '$post[idSTO]' AND namaSTO != '$post[namaSTO]'");
-	// 	if($query->num_rows() > 0) {
-	// 		$this->form_validation->set_message('STO_check', '{field} ini sudah dipakai, silahkan ganti');
-	// 		return FALSE;
-	// 	} else {
-	// 		return TRUE;
-	// 	}
-	// }
 
 	public function deleteSpecOLT()
 	{
@@ -574,9 +566,6 @@ class Admin extends CI_Controller
 	}
 
 }
-
-
-
 
 /* End of file Admin.php */
 /* Location: ./application/controllers/Admin.php */

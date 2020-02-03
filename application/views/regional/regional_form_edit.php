@@ -27,7 +27,7 @@
                 <form action="" method="post"> 
                     <div class="form-group <?=form_error('idRegional') ? 'has-error' : null ?>">
                             <label>ID Regional *</label>
-                            <input type="text" name="idRegional" value="<?=$row->idRegional?>" class="form-control"> 
+                            <input type="text" name="idRegional" value="<?=$row->idRegional?>" class="form-control" disabled> 
                             <?=form_error('idRegional')?>
                         </div>
                         <div class="form-group <?=form_error('namaRegional') ? 'has-error' : null ?>">
