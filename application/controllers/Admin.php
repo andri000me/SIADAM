@@ -241,14 +241,14 @@ class Admin extends CI_Controller
 
 	public function addRegional()
 	{
-		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|min_length[3]|max_length[5]|is_unique[sto.idSTO]|regex_match[/^[A-Z]{3,}+$/]|trim');
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{2,}+$/]|trim');
 		$this->form_validation->set_rules('namaRegional', 'Nama Regional', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
 		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
 		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
-		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter dan numerik');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
@@ -267,7 +267,7 @@ class Admin extends CI_Controller
 
 	public function editRegional($id)
 	{
-		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|regex_match[/^[A-Z]+$/]|min_length[3]|max_length[5]|trim');
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|regex_match[/^[A-Z0-9]{2,}+$/]|min_length[2]|max_length[5]|trim');
 		$this->form_validation->set_rules('namaRegional', 'Nama Regional', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
@@ -281,27 +281,29 @@ class Admin extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$query = $this->Regional_model->getDataRegional($id);
+			
 			if($query->num_rows() > 0) { 
 				$data['row'] = $query->row();
-        $this->template->load('template/template_Admin', 'sto/sto_form_edit', $data);
+				print_r($data);
+        		$this->template->load('template/template_Admin', 'regional/regional_form_edit', $data);
 			} else {
 				echo "<script>alert('Data tidak ditemukan');";
 				echo "window.location='".site_url('Admin/getRegional')."';</script>";
 			}
 		} else {
 			$post = $this->input->post(null, TRUE);
-			$this->Regional_model->editDataSTO($post);
+			$this->Regional_model->editDataRegional($post);
 			if($this->db->affected_rows() > 0) {
 				echo "<script>alert('Data berhasil disimpan');</script>";
 			}
-			echo "<script>window.location='".site_url('Admin/getSTO')."';</script>";
+			echo "<script>window.location='".site_url('Admin/getRegional')."';</script>";
 		}
 	}
 
 	public function deleteRegional()
 	{
 		$id = $this->input->post('idRegional');
-		$this->STO_model->deleteDataSTO($id);
+		$this->STO_model->deleteDataRegional($id);
 
 		if($this->db->affected_rows() > 0) {
 			echo "<script>alert('Data berhasil dihapus');</script>";

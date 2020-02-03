@@ -34,17 +34,17 @@ class Regional_model extends CI_Model {
 
   public function addDataRegional($post)
     {
-      $params['idRegional'] = $post['idRegional'];
-      $params['namaRegional'] = $post['namaRegional'];
-      $params['keterangan'] = $post['keterangan'];
+      $params['idRegional'] = html_escape($post['idRegional']);
+      $params['namaRegional'] = html_escape($post['namaRegional']);
+      $params['keterangan'] = html_escape($post['keterangan']);
       $this->db->insert('regional', $params);
     }
 
     public function editDataRegional($post)
     {
-      $params['namaRegional'] = $post['namaRegional'];
-      $params['keterangan'] = $post['keterangan'];
-      $this->db->where('idRegional;', $post['idRegional']);
+      $params['namaRegional'] = html_escape($post['namaRegional']);
+      $params['keterangan'] = html_escape($post['keterangan']);
+      $this->db->where('idRegional', $post['idRegional']);
       $this->db->update('regional', $params);
     }
 

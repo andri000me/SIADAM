@@ -41,7 +41,6 @@ class STO_model extends CI_Model {
         $params['namaSTO'] = html_escape($post['namaSTO']);
         $params['keterangan'] = html_escape($post['keterangan']);
         $this->db->where('idSTO', $post['idSTO']);
-        
         $this->db->update('sto', $params);
     }
 
