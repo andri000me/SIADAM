@@ -36,7 +36,7 @@ class SpecOLT_model extends CI_Model {
         $params['merekOLT'] = html_escape($post['merekOLT']);
         $params['typeOLT'] = html_escape($post['typeOLT']);
         $params['keterangan'] = html_escape($post['keterangan']);
-        $this->db->insert('datel', $params);
+        $this->db->insert('specification_olt', $params);
     }
 
     public function editDataSpecOLT($post)
@@ -46,7 +46,7 @@ class SpecOLT_model extends CI_Model {
         $params['typeOLT'] = html_escape($post['typeOLT']);
         $params['keterangan'] = html_escape($post['keterangan']);
         $this->db->where('idSpecOLT', $post['idSpecOLT']);
-        $this->db->update('datel', $params);
+        $this->db->update('specification_olt', $params);
     }
 
     public function deleteDataSpecOLT($id)
