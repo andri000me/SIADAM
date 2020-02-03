@@ -49,7 +49,7 @@ class Admin extends CI_Controller
 
 	public function addPegawai()
 	{
-		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required|alpha_numeric_spaces|max_length[30]|trim');
+		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[30]|trim');
 		$this->form_validation->set_rules('username', 'Username', 'required|alpha_numeric|is_unique[pegawai.username]|min_length[5]|max_length[20]|trim');
 		$this->form_validation->set_rules('password', 'Password', 'required|alpha_numeric|min_length[5]|max_length[16]|trim');
 		$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|matches[password]|alpha_numeric|min_length[5]|max_length[16]|trim',
@@ -57,9 +57,11 @@ class Admin extends CI_Controller
 		);
 		$this->form_validation->set_rules('status', 'Status', 'required|trim');
 
-		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		// $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
 		
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
 		$this->form_validation->set_message('alpha_numeric_spaces', '{field} berisi karakter');
 		$this->form_validation->set_message('alpha_numeric', '{field} berisi karakter dan numerik');
@@ -80,7 +82,7 @@ class Admin extends CI_Controller
 
 	public function editPegawai($id)
 	{
-		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required|alpha_numeric_spaces|min_length[0]|max_length[30]|trim');
+		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required|regex_match[/^[a-zA-Z ]+$/]|min_length[0]|max_length[30]|trim');
 		$this->form_validation->set_rules('username', 'Username', 'required|alpha_numeric|callback_username_check|min_length[5]|max_length[20]|trim');
 		if($this->input->post('password')) {
 			$this->form_validation->set_rules('password', 'Password', 'alpha_numeric|min_length[5]|max_length[16]|trim');
@@ -96,8 +98,12 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('status', 'Status', 'required');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		// $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_numeric_spaces', '{field} berisi karakter');
+		$this->form_validation->set_message('alpha_numeric', '{field} berisi karakter dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
@@ -142,8 +148,7 @@ class Admin extends CI_Controller
   }
   // End Menu Pegawai
   
-  // Menu STO : STO_checknya belum fix
-
+  // Menu STO
   public function getSTO()
 	{
 		$data['row'] = $this->STO_model->getDataSTO();
@@ -152,12 +157,14 @@ class Admin extends CI_Controller
 
 	public function addSTO()
 	{
-		$this->form_validation->set_rules('idSTO', 'ID STO', 'required');
-		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan');
+		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|min_length[3]|max_length[5]|is_unique[sto.idSTO]|regex_match[/^[A-Z]{3,}+$/]|trim');
+		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
@@ -176,13 +183,14 @@ class Admin extends CI_Controller
 
 	public function editSTO($id)
 	{
-		
-		$this->form_validation->set_rules('idSTO', 'ID STO', 'required');
-		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan');
+		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|regex_match[/^[A-Z]+$/]|min_length[3]|max_length[5]|trim');
+		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
@@ -205,16 +213,6 @@ class Admin extends CI_Controller
 			echo "<script>window.location='".site_url('Admin/getSTO')."';</script>";
 		}
 	}
-	// function STO_check() {
-	// 	$post = $this->input->post(null, TRUE);
-	// 	$query = $this->db->query("SELECT * FROM sto WHERE idSTO = '$post[idSTO]' AND namaSTO != '$post[namaSTO]'");
-	// 	if($query->num_rows() > 0) {
-	// 		$this->form_validation->set_message('STO_check', '{field} ini sudah dipakai, silahkan ganti');
-	// 		return FALSE;
-	// 	} else {
-	// 		return TRUE;
-	// 	}
-	// }
 
 	public function deleteSTO()
 	{
@@ -233,17 +231,19 @@ class Admin extends CI_Controller
   public function getRegional()
 	{
 		$data['row'] = $this->Regional_model->getDataRegional();
-    $this->template->load('template/template_Admin', 'regional/regional_data', $data);
+		$this->template->load('template/template_Admin', 'regional/regional_data', $data);
 	}
 
 	public function addRegional()
 	{
-		$this->form_validation->set_rules('idRegional', 'idReg', 'required|is_unique[regional.idRegional]');
-		$this->form_validation->set_rules('namaRegional', 'namaReg', 'required|is_unique[regional.namaRegional]');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', '');
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|min_length[3]|max_length[5]|is_unique[sto.idSTO]|regex_match[/^[A-Z]{3,}+$/]|trim');
+		$this->form_validation->set_rules('namaRegional', 'Nama Regional', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
@@ -252,76 +252,56 @@ class Admin extends CI_Controller
 			$this->template->load('template/template_Admin', 'regional/regional_form_add');
 		} else {
 			$post = $this->input->post(null, TRUE);
-			$this->pegawai_model->addDataPegawai($post);
-			if($this->db->affected_rows() > 0) {
-				echo "<script>alert('Data berhasil disimpan');</script>";
-			}
-			echo "<script>window.location='".site_url('Admin/getPegawai')."';</script>";
-		}
-	}
-
-	public function editRegional($id)
-	{
-		$this->form_validation->set_rules('namaPegawai', 'Nama', 'required');
-		$this->form_validation->set_rules('username', 'Username', 'required|callback_username_check');
-		if($this->input->post('password')) {
-			$this->form_validation->set_rules('password', 'Password', 'min_length[5]');
-			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]',
-				array('matches' => '%s tidak sesuai dengan password')
-			);
-		}
-		if($this->input->post('passconf')) {
-			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]',
-				array('matches' => '%s tidak sesuai dengan password')
-			);
-		}
-		$this->form_validation->set_rules('status', 'Status', 'required');
-
-		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
-		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
-
-		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
-
-		if ($this->form_validation->run() == FALSE) {
-			$query = $this->Regional_model->getDataRegional($id);
-			if($query->num_rows() > 0) { 
-				$data['row'] = $query->row();
-        $this->template->load('template/template_Admin', 'regional/regional_form_edit', $data);
-        
-			} else {
-				echo "<script>alert('Data tidak ditemukan');";
-				echo "window.location='".site_url('Admin/getRegional')."';</script>";
-			}
-		} else {
-			$post = $this->input->post(null, TRUE);
-			$this->pegawai_model->editDataPegawai($post);
+			$this->Regional_model->addDataRegional($post);
 			if($this->db->affected_rows() > 0) {
 				echo "<script>alert('Data berhasil disimpan');</script>";
 			}
 			echo "<script>window.location='".site_url('Admin/getRegional')."';</script>";
 		}
 	}
-	function regional_check() {
-		$post = $this->input->post(null, TRUE);
-		$query = $this->db->query("SELECT * FROM pegawai WHERE username = '$post[username]' AND idPegawai != '$post[idPegawai]'");
-		if($query->num_rows() > 0) {
-			$this->form_validation->set_message('username_check', '{field} ini sudah dipakai, silahkan ganti');
-			return FALSE;
+
+	public function editRegional($id)
+	{
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|regex_match[/^[A-Z]+$/]|min_length[3]|max_length[5]|trim');
+		$this->form_validation->set_rules('namaRegional', 'Nama Regional', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim');
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$query = $this->Regional_model->getDataSTO($id);
+			if($query->num_rows() > 0) { 
+				$data['row'] = $query->row();
+        $this->template->load('template/template_Admin', 'sto/sto_form_edit', $data);
+			} else {
+				echo "<script>alert('Data tidak ditemukan');";
+				echo "window.location='".site_url('Admin/getRegional')."';</script>";
+			}
 		} else {
-			return TRUE;
+			$post = $this->input->post(null, TRUE);
+			$this->STO_model->editDataSTO($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getSTO')."';</script>";
 		}
 	}
 
-	public function deleteRegional()
+	public function deleteSTO()
 	{
-		$id = $this->input->post('idPegawai');
-		$this->pegawai_model->deleteDataPegawai($id);
+		$id = $this->input->post('idSTO');
+		$this->STO_model->deleteDataSTO($id);
 
 		if($this->db->affected_rows() > 0) {
 			echo "<script>alert('Data berhasil dihapus');</script>";
 		}
-		echo "<script>window.location='".site_url('Admin/getPegawai')."';</script>";
+		echo "<script>window.location='".site_url('Admin/getSTO')."';</script>";
   }
   // End Menu Regional
 

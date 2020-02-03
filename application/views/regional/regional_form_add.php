@@ -37,7 +37,7 @@
                         <?=form_error('namaRegional')?>
                     </div>
                     <div class="form-group <?=form_error('keterangan') ? 'has-error' : null ?>">
-                        <label>Keterangan *</label>
+                        <label>Keterangan</label>
                         <textarea name="keterangan" class="form-control" rows="3" value="<?=set_value('keterangan')?>" ></textarea>
                         <?=form_error('keterangan')?>
                     </div>
