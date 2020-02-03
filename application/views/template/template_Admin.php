@@ -167,7 +167,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-cube fa-fw mr-3"></i> Data ODP</a></li>
-            <li><a href="#"><i class="fa fa-code-fork fa-fw mr-3"></i> Data Port ODP</a></li>
+            <li><a href="#"><i class="fa fa-sitemap fa-fw mr-3"></i> Data Port ODP</a></li>
         </ul>
         </li>
         <li class="treeview">
@@ -196,8 +196,6 @@
             <li><a href="<?=site_url('Admin/getRegional')?>"><i class="fa fa-flag fa-fw mr-3"></i> Regional</a></li>
             <li><a href="<?=site_url('Admin/getDatel')?>"><i class="fa fa-tag fa-fw mr-3"></i> Datel</a></li>
             <li><a href="<?=site_url('Admin/getWitel')?>"><i class="fa fa-map-marker fa-fw mr-3"></i> Witel</a></li>
-            <li><a href="#"><i class="fa fa-barcode fa-fw mr-3"></i> Merek</a></li>
-            <li><a href="#"><i class="fa fa-sitemap fa-fw mr-3"></i> Type OLT</a></li>
             <li><a href="<?=site_url('Admin/getSpecOLT')?>"><i class="fa fa-wrench fa-fw mr-3"></i> Specification OLT</a></li>
         </ul>
         </li>

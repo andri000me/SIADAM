@@ -2,8 +2,23 @@
  * Skin: Blue
  * ---------- F698A4 EF465B EC1E37 D71C32 C2192E
  */
+ @font-face {
+  src: url(assets/dist/css/Fonts/Poppins-Regular.ttf);
+  font-family: Poppins;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
 .skin-blue-light .main-header .navbar {
   background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), 
+                0 2px 4px rgba(0,0,0,0.05), 
+                0 4px 8px rgba(0,0,0,0.05), 
+                0 8px 16px rgba(0,0,0,0.05),
+                0 16px 32px rgba(0,0,0,0.05), 
+                0 32px 64px rgba(0,0,0,0.05);
 }
 .skin-blue-light .main-header .navbar .nav > li > a {
   color: rgb(0, 0, 0);
@@ -74,7 +89,12 @@
 }
 /* border sidebar */
 .skin-blue-light .main-sidebar {
-  border-right: 1px solid #EC1E37;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.11), 
+              0 2px 2px rgba(0,0,0,0.11), 
+              0 4px 4px rgba(0,0,0,0.11), 
+              0 8px 8px rgba(0,0,0,0.11), 
+              0 16px 16px rgba(0,0,0,0.11), 
+              0 32px 32px rgba(0,0,0,0.11);
 }
 
 .skin-blue-light .sidebar-menu > li {
@@ -85,11 +105,11 @@
 /* settings */
 .skin-blue-light .sidebar-menu > li.header {
   color: #d6d6d6;
-  background: #EC1E37;
+  background: #C2192E;
 }
 .skin-blue-light .sidebar-menu > li > a {
   border-left: 3px solid transparent;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* kalo cursor nempel */
@@ -103,7 +123,7 @@
   border-left-color: #D71C32;
 }
 .skin-blue-light .sidebar-menu > li.active > a {
-  font-weight: 600;
+  font-weight: 400;
 }
 /* kalo di pencet treeviewnya */
 .skin-blue-light .sidebar-menu > li > .treeview-menu {
@@ -119,14 +139,16 @@
 /* font treeview */
 .skin-blue-light .sidebar-menu .treeview-menu > li > a {
   color: #f1f1f1;
+  font-weight: 300;
 }
 /* kalo nempel di treeview fontnya */
 .skin-blue-light .sidebar-menu .treeview-menu > li.active > a,
 .skin-blue-light .sidebar-menu .treeview-menu > li > a:hover {
   color: #cfcfcf;
+  font-weight: 400;
 }
 .skin-blue-light .sidebar-menu .treeview-menu > li.active > a {
-  font-weight: 600;
+  font-weight: 500;
 }
 .skin-blue-light .sidebar-form {
   border-radius: 3px;

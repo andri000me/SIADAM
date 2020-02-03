@@ -3,7 +3,7 @@
     Kelola Data Regional
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
+    <li><a href="#"><i class="fa fa-flag"></i></a></li>
     <li class="active">Regional</li>
   </ol>
 </section>
