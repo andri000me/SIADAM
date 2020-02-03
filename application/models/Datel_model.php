@@ -20,19 +20,36 @@ class Datel_model extends CI_Model {
 
   // ------------------------------------------------------------------------
 
-  public function __construct()
-  {
-    parent::__construct();
+  public function getDataDatel($id = null){
+    $this->db->from('datel');
+        if($id != null) {
+            $this->db->where('idDatel', $id);
+        }
+        $query = $this->db->get();
+        return $query;
   }
 
-  // ------------------------------------------------------------------------
+  public function addDataDatel($post)
+    {
+        $params['idDatel'] = html_escape($post['idDatel']);
+        $params['namaDatel'] = html_escape($post['namaDatel']);
+        $params['keterangan'] = html_escape($post['keterangan']);
+        $this->db->insert('datel', $params);
+    }
 
+    public function editDataDatel($post)
+    {
+        $params['namaDatel'] = html_escape($post['namaDatel']);
+        $params['keterangan'] = html_escape($post['keterangan']);
+        $this->db->where('idDatel', $post['idDatel']);
+        $this->db->update('datel', $params);
+    }
 
-  // ------------------------------------------------------------------------
-  public function index()
-  {
-    // 
-  }
+    public function deleteDataDatel($id)
+	{
+		$this->db->where('idDatel', $id);
+		$this->db->delete('datel');
+	}
 
   // ------------------------------------------------------------------------
 

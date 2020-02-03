@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-  Datel
-    <small>Data Datel</small>
+  Specification OLT
+    <small>Data Specification OLT</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-    <li class="active">Datel</li>
+    <li class="active">Specification OLT</li>
   </ol>
 </section>
 
@@ -14,7 +14,7 @@
 
   <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Tambah Datel</h3>
+        <h3 class="box-title">Tambah Specification OLT</h3>
         <div class="pull-right">
             <a href="<?=site_url('Admin/getDatel')?>" class="btn btn-warning btn-flat">
                 <i class="fa fa-undo"></i> Back 
@@ -26,15 +26,25 @@
              <div class="col-md-4 col-md-offset-4">
                 <?php //echo validation_errors() ?>
                 <form action="" method="post"> 
-                    <div class="form-group <?=form_error('idDatel') ? 'has-error' : null ?>">
-                        <label>ID Datel *</label>
-                        <input type="text" name="idDatel" value="<?=set_value('idDatel')?>" class="form-control"> 
-                        <?=form_error('idDatel')?>
+                    <div class="form-group <?=form_error('idSpecOLT') ? 'has-error' : null ?>">
+                        <label>ID Specification OLT *</label>
+                        <input type="text" name="idSpecOLT" value="<?=set_value('idSpecOLT')?>" class="form-control"> 
+                        <?=form_error('idSpecOLT')?>
                     </div>
-                    <div class="form-group <?=form_error('namaDatel') ? 'has-error' : null ?>">
-                        <label>Nama Datel *</label>
-                        <input type="text" name="namaDatel" value="<?=set_value('namaDatel')?>" class="form-control">
-                        <?=form_error('namaDatel')?>
+                    <div class="form-group <?=form_error('namaSpecOLT') ? 'has-error' : null ?>">
+                        <label>Nama Specification OLT *</label>
+                        <input type="text" name="namaSpecOLT" value="<?=set_value('namaSpecOLT')?>" class="form-control">
+                        <?=form_error('namaSpecOLT')?>
+                    </div>
+                    <div class="form-group <?=form_error('merekOLT') ? 'has-error' : null ?>">
+                        <label>Merek OLT</label>
+                        <input type="text" name="merekOLT" value="<?=set_value('merekOLT')?>" class="form-control">
+                        <?=form_error('merekOLT')?>
+                    </div>
+                    <div class="form-group <?=form_error('typeOLT') ? 'has-error' : null ?>">
+                        <label>Type OLT</label>
+                        <input type="text" name="typeOLT" value="<?=set_value('typeOLT')?>" class="form-control">
+                        <?=form_error('typeOLT')?>
                     </div>
                     <div class="form-group <?=form_error('keterangan') ? 'has-error' : null ?>">
                         <label>Keterangan</label>

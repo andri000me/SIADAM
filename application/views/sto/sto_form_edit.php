@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
     STO
-    <small>Data Pegawai</small>
+    <small>Data STO</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-    <li class="active">Pegawai</li>
+    <li class="active">STO</li>
   </ol>
 </section>
 

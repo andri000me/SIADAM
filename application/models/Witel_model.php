@@ -20,19 +20,36 @@ class Witel_model extends CI_Model {
 
   // ------------------------------------------------------------------------
 
-  public function __construct()
-  {
-    parent::__construct();
+  public function getDataWitel($id = null){
+    $this->db->from('witel');
+        if($id != null) {
+            $this->db->where('idWitel', $id);
+        }
+        $query = $this->db->get();
+        return $query;
   }
 
-  // ------------------------------------------------------------------------
+  public function addDataWitel($post)
+    {
+        $params['idWitel'] = html_escape($post['idWitel']);
+        $params['namaWitel'] = html_escape($post['namaWitel']);
+        $params['keterangan'] = html_escape($post['keterangan']);
+        $this->db->insert('witel', $params);
+    }
 
+    public function editDataWitel($post)
+    {
+        $params['namaWitel'] = html_escape($post['namaWitel']);
+        $params['keterangan'] = html_escape($post['keterangan']);
+        $this->db->where('idWitel', $post['idWitel']);
+        $this->db->update('witel', $params);
+    }
 
-  // ------------------------------------------------------------------------
-  public function index()
-  {
-    // 
-  }
+    public function deleteDataWitel($id)
+	{
+		$this->db->where('idWitel', $id);
+		$this->db->delete('witel');
+	}
 
   // ------------------------------------------------------------------------
 

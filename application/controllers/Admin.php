@@ -27,14 +27,14 @@ class Admin extends CI_Controller
 		check_not_login();
 		//check admin buat fungsi_helper
 		check_admin();
-<<<<<<< HEAD
-    $this->load->model('Pegawai_model');
-	$this->load->model('Regional_model');
-	$this->load->model('STO_model');
-=======
 		$this->load->model('Pegawai_model');
 		$this->load->model('Regional_model');
->>>>>>> refs/remotes/origin/master
+		$this->load->model('STO_model');
+		$this->load->model('Datel_model');
+		$this->load->model('Witel_model');
+		// $this->load->model('Merek_model');
+		// $this->load->model('TypeOLT_model');
+		$this->load->model('SpecOLT_model');
 		$this->load->library('form_validation');
   }
 
@@ -330,7 +330,270 @@ class Admin extends CI_Controller
   }
   // End Menu Regional
 
+  // Start Menu Datel : menu edit kalo sama belom bisa 
+
+  public function getDatel()
+	{
+		$data['row'] = $this->Datel_model->getDataDatel();
+		$this->template->load('template/template_Admin', 'datel/datel_data', $data);
+	}
+
+	public function addDatel()
+	{
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required');
+		$this->form_validation->set_rules('namaDatel', 'Nama Datel', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan');
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->template->load('template/template_Admin', 'datel/datel_form_add');
+		} else {
+			$post = $this->input->post(null, TRUE);
+			$this->Datel_model->addDataDatel($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getDatel')."';</script>";
+		}
+	}
+
+	public function editDatel($id)
+	{
+		
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required');
+		$this->form_validation->set_rules('namaDatel', 'Nama Datel', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan');
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$query = $this->Datel_model->getDataDatel($id);
+			if($query->num_rows() > 0) { 
+				$data['row'] = $query->row();
+        $this->template->load('template/template_Admin', 'datel/datel_form_edit', $data);
+			} else {
+				echo "<script>alert('Data tidak ditemukan');";
+				echo "window.location='".site_url('Admin/getDatel')."';</script>";
+			}
+		} else {
+			$post = $this->input->post(null, TRUE);
+			$this->Datel_model->editDataDatel($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getDatel')."';</script>";
+		}
+	}
+	// function STO_check() {
+	// 	$post = $this->input->post(null, TRUE);
+	// 	$query = $this->db->query("SELECT * FROM sto WHERE idSTO = '$post[idSTO]' AND namaSTO != '$post[namaSTO]'");
+	// 	if($query->num_rows() > 0) {
+	// 		$this->form_validation->set_message('STO_check', '{field} ini sudah dipakai, silahkan ganti');
+	// 		return FALSE;
+	// 	} else {
+	// 		return TRUE;
+	// 	}
+	// }
+
+	public function deleteDatel()
+	{
+		$id = $this->input->post('idDatel');
+		$this->Datel_model->deleteDataDatel($id);
+
+		if($this->db->affected_rows() > 0) {
+			echo "<script>alert('Data berhasil dihapus');</script>";
+		}
+		echo "<script>window.location='".site_url('Admin/getDatel')."';</script>";
+  }
+  // End Menu Datel
+
+// Start Menu Witel : menu edit kalo sama belom bisa 
+
+	public function getWitel()
+	{
+		$data['row'] = $this->Witel_model->getDataWitel();
+		$this->template->load('template/template_Admin', 'witel/witel_data', $data);
+	}
+
+	public function addWitel()
+	{
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required');
+		$this->form_validation->set_rules('namaWitel', 'Nama Witel', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan');
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->template->load('template/template_Admin', 'witel/witel_form_add');
+		} else {
+			$post = $this->input->post(null, TRUE);
+			$this->Witel_model->addDataWitel($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getWitel')."';</script>";
+		}
+	}
+
+	public function editWitel($id)
+	{
+		
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required');
+		$this->form_validation->set_rules('namaWitel', 'Nama Witel', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan');
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$query = $this->Witel_model->getDataWitel($id);
+			if($query->num_rows() > 0) { 
+				$data['row'] = $query->row();
+		$this->template->load('template/template_Admin', 'witel/witel_form_edit', $data);
+			} else {
+				echo "<script>alert('Data tidak ditemukan');";
+				echo "window.location='".site_url('Admin/getWitel')."';</script>";
+			}
+		} else {
+			$post = $this->input->post(null, TRUE);
+			$this->Witel_model->editDataWitel($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getWitel')."';</script>";
+		}
+	}
+	// function STO_check() {
+	// 	$post = $this->input->post(null, TRUE);
+	// 	$query = $this->db->query("SELECT * FROM sto WHERE idSTO = '$post[idSTO]' AND namaSTO != '$post[namaSTO]'");
+	// 	if($query->num_rows() > 0) {
+	// 		$this->form_validation->set_message('STO_check', '{field} ini sudah dipakai, silahkan ganti');
+	// 		return FALSE;
+	// 	} else {
+	// 		return TRUE;
+	// 	}
+	// }
+
+	public function deleteWitel()
+	{
+		$id = $this->input->post('idWitel');
+		$this->Witel_model->deleteDataWitel($id);
+
+		if($this->db->affected_rows() > 0) {
+			echo "<script>alert('Data berhasil dihapus');</script>";
+		}
+		echo "<script>window.location='".site_url('Admin/getWitel')."';</script>";
+	}
+	// End Menu Witel
+
+	// Start Menu Specification OLT : menu edit kalo sama belom bisa 
+
+	public function getSpecOLT()
+	{
+		$data['row'] = $this->SpecOLT_model->getDataSpecOLT();
+		$this->template->load('template/template_Admin', 'specolt/specolt_data', $data);
+	}
+
+	public function addSpecOLT()
+	{
+		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required');
+		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required');
+		$this->form_validation->set_rules('merekOLT', 'Merek OLT');
+		$this->form_validation->set_rules('typeOLT', 'Type OLT');
+		$this->form_validation->set_rules('keterangan', 'Keterangan');
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->template->load('template/template_Admin', 'specolt/specolt_form_add');
+		} else {
+			$post = $this->input->post(null, TRUE);
+			$this->SpecOLT_model->addDataSpecOLT($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getSpecOLT')."';</script>";
+		}
+	}
+
+	public function editSpecOLT($id)
+	{
+		
+		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required');
+		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required');
+		$this->form_validation->set_rules('merekOLT', 'Merek OLT');
+		$this->form_validation->set_rules('typeOLT', 'Type OLT');
+		$this->form_validation->set_rules('keterangan', 'Keterangan');
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$query = $this->SpecOLT_model->getDataSpecOLT($id);
+			if($query->num_rows() > 0) { 
+				$data['row'] = $query->row();
+		$this->template->load('template/template_Admin', 'specolt/specolt_form_edit', $data);
+			} else {
+				echo "<script>alert('Data tidak ditemukan');";
+				echo "window.location='".site_url('Admin/getSpecOLT')."';</script>";
+			}
+		} else {
+			$post = $this->input->post(null, TRUE);
+			$this->SpecOLT_model->editDataSpecOLT($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getSpecOLT')."';</script>";
+		}
+	}
+	// function STO_check() {
+	// 	$post = $this->input->post(null, TRUE);
+	// 	$query = $this->db->query("SELECT * FROM sto WHERE idSTO = '$post[idSTO]' AND namaSTO != '$post[namaSTO]'");
+	// 	if($query->num_rows() > 0) {
+	// 		$this->form_validation->set_message('STO_check', '{field} ini sudah dipakai, silahkan ganti');
+	// 		return FALSE;
+	// 	} else {
+	// 		return TRUE;
+	// 	}
+	// }
+
+	public function deleteSpecOLT()
+	{
+		$id = $this->input->post('idSpecOLT');
+		$this->SpecOLT_model->deleteDataSpecOLT($id);
+
+		if($this->db->affected_rows() > 0) {
+			echo "<script>alert('Data berhasil dihapus');</script>";
+		}
+		echo "<script>window.location='".site_url('Admin/getSpecOLT')."';</script>";
+	}
+
 }
+
+
 
 
 /* End of file Admin.php */
