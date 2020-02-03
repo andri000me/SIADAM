@@ -45,30 +45,30 @@ class Pegawai_model extends CI_Model {
 
   public function addDataPegawai($post)
     {
-        $params['namaPegawai'] = $post['namaPegawai'];
-        $params['username'] = $post['username'];
-        $params['password'] = $post['password'];
-        $params['status'] = $post['status'];
+        $params['namaPegawai'] = html_escape($post['namaPegawai']);
+        $params['username'] = html_escape($post['username']);
+        $params['password'] = html_escape($post['password']);
+        $params['status'] = html_escape($post['status']);
         $this->db->insert('pegawai', $params);
     }
 
-    public function editDataPegawai($post)
+  public function editDataPegawai($post)
     {
-        $params['namaPegawai'] = $post['namaPegawai'];
-        $params['username'] = $post['username'];
+        $params['namaPegawai'] = html_escape($post['namaPegawai']);
+        $params['username'] = html_escape($post['username']);
         if(!empty($post['password'])) {
-            $params['password'] = ($post['password']);
+          html_escape($post['password']);
         }
-        $params['status'] = $post['status'];
+        $params['status'] = html_escape($post['status']);
         $this->db->where('idPegawai', $post['idPegawai']);
         $this->db->update('pegawai', $params);
     }
 
-    public function deleteDataPegawai($id)
-	{
-		$this->db->where('idPegawai', $id);
-		$this->db->delete('pegawai');
-	}
+  public function deleteDataPegawai($id)
+    {
+      $this->db->where('idPegawai', $id);
+      $this->db->delete('pegawai');
+    }
   // ------------------------------------------------------------------------
 
 }
