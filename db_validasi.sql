@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2020 at 03:07 PM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Feb 04, 2020 at 04:29 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,12 +39,31 @@ CREATE TABLE `datel` (
 --
 
 INSERT INTO `datel` (`idDatel`, `namaDatel`, `keterangan`) VALUES
-('K11', 'Kandel', 'Angga123 Angga'),
+('E1', 'Semarangan', 'asdasdasd'),
 ('K2', 'Kendal', ''),
-('K3', 'New', 'New_Update'),
-('K4', 'Angga', 'Angga 123'),
 ('S1', 'Semarang', ''),
 ('U3', 'Ungaran', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `merek_olt`
+--
+
+CREATE TABLE `merek_olt` (
+  `idMerek` varchar(6) NOT NULL,
+  `namaMerek` varchar(20) NOT NULL,
+  `keterangan` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `merek_olt`
+--
+
+INSERT INTO `merek_olt` (`idMerek`, `namaMerek`, `keterangan`) VALUES
+('merk1', 'ZTE', NULL),
+('merk2', 'Huawei', NULL),
+('merk3', 'ALU', NULL);
 
 -- --------------------------------------------------------
 
@@ -79,11 +98,8 @@ INSERT INTO `pegawai` (`idPegawai`, `namaPegawai`, `username`, `password`, `stat
 (12, 'OnsiteB', 'onsite234', 'onsite234', 'Onsite'),
 (13, 'SDIA', 'sdi123', 'sdi123', 'SDI'),
 (14, 'SDIB', 'sdi234', 'sdi234', 'SDI'),
-(17, '<h1>Angga</h1>', '<h1>Angga</h1>', '12345', 'Daman'),
-(20, 'Anggaaa', 'anggaaaaa', 'angga', 'HD Daman'),
-(21, '&lt;h1&gt;Angga&lt;/h1&gt;', '&lt;h1&gt;Angg&lt;/h', '12345', 'Dava'),
-(22, '&lt;h1&gt;Anggaa&lt;/h1&gt;', '&lt;h1&gt;Anggaa&lt;', '&lt;h1&gt;Anggaa', 'Dava'),
-(23, 'Angga Dharma Iswara', 'angga', 'angga', 'Ondesk');
+(20, 'taufiq', 'admin1234', 'adminadmin', 'Admin'),
+(21, '1234', '12355', '12345', 'Daman');
 
 -- --------------------------------------------------------
 
@@ -170,8 +186,8 @@ INSERT INTO `rekap_data_olt` (`hostname`, `ipOLT`, `idSTO`, `idLogicalDevice`, `
 CREATE TABLE `specification_olt` (
   `idSpecOLT` varchar(6) NOT NULL,
   `namaSpecOLT` varchar(50) NOT NULL,
-  `merekOLT` varchar(20) DEFAULT NULL,
-  `typeOLT` varchar(20) DEFAULT NULL,
+  `merekOLT` varchar(6) NOT NULL,
+  `typeOLT` varchar(6) DEFAULT NULL,
   `keterangan` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -200,14 +216,33 @@ CREATE TABLE `sto` (
 --
 
 INSERT INTO `sto` (`idSTO`, `namaSTO`, `keterangan`) VALUES
-('ABR', 'Ambarawa', ''),
+('ABR', 'Ambarawa', NULL),
 ('GNK', 'Semarang Genuk', NULL),
-('KDL', 'Kendal', NULL),
+('KDL', 'Kendal', 'adoh\r\n\r\n'),
 ('MKG', 'Semarang Mangkang', NULL),
-('SMC', 'Sekolah Menengah', ''),
-('SMK', 'Sekolah', ''),
-('SMR', 'Semarang RangRANG', ''),
-('SMT', 'Semarang Tugu', '');
+('NDIYA', 'MBUHLAHH', 'PIYEMENEHH'),
+('SMC', 'Semarang Candi', NULL),
+('SMT', 'Semarang Tugu', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type_olt`
+--
+
+CREATE TABLE `type_olt` (
+  `idTypeOLT` varchar(6) NOT NULL,
+  `typeOLT` varchar(20) NOT NULL,
+  `keterangan` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `type_olt`
+--
+
+INSERT INTO `type_olt` (`idTypeOLT`, `typeOLT`, `keterangan`) VALUES
+('type1', 'C300', ''),
+('type2', 'C300.v.2.0', '');
 
 -- --------------------------------------------------------
 
@@ -226,7 +261,8 @@ CREATE TABLE `witel` (
 --
 
 INSERT INTO `witel` (`idWitel`, `namaWitel`, `keterangan`) VALUES
-('WTL4', 'Semarang', '');
+('WTL4', 'Semaranga', ''),
+('WTL5', 'Singotoro', 'kuy\r\n');
 
 --
 -- Indexes for dumped tables
@@ -237,6 +273,13 @@ INSERT INTO `witel` (`idWitel`, `namaWitel`, `keterangan`) VALUES
 --
 ALTER TABLE `datel`
   ADD PRIMARY KEY (`idDatel`);
+
+--
+-- Indexes for table `merek_olt`
+--
+ALTER TABLE `merek_olt`
+  ADD PRIMARY KEY (`idMerek`),
+  ADD UNIQUE KEY `namaMerek` (`namaMerek`);
 
 --
 -- Indexes for table `pegawai`
@@ -273,13 +316,22 @@ ALTER TABLE `rekap_data_olt`
 -- Indexes for table `specification_olt`
 --
 ALTER TABLE `specification_olt`
-  ADD PRIMARY KEY (`idSpecOLT`);
+  ADD PRIMARY KEY (`idSpecOLT`),
+  ADD KEY `type` (`typeOLT`),
+  ADD KEY `merek` (`merekOLT`);
 
 --
 -- Indexes for table `sto`
 --
 ALTER TABLE `sto`
   ADD PRIMARY KEY (`idSTO`);
+
+--
+-- Indexes for table `type_olt`
+--
+ALTER TABLE `type_olt`
+  ADD PRIMARY KEY (`idTypeOLT`),
+  ADD UNIQUE KEY `typeOLT` (`typeOLT`);
 
 --
 -- Indexes for table `witel`
@@ -295,7 +347,7 @@ ALTER TABLE `witel`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `idPegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idPegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
