@@ -11,7 +11,7 @@
 
 <!-- Main content -->
 <section class="content">
-
+Selemat Datang <?=$this->fungsi->user_login()->namaPegawai?>
 
 
 </section>

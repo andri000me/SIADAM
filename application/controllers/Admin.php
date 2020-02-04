@@ -163,7 +163,7 @@ class Admin extends CI_Controller
 
 	public function addSTO()
 	{
-		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|min_length[3]|max_length[5]|is_unique[sto.idSTO]|regex_match[/^[A-Z]{3,}+$/]|trim');
+		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|min_length[3]|max_length[5]|is_unique[sto.idSTO]|regex_match[/^[A-Z]+$/]|trim');
 		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
@@ -244,7 +244,7 @@ class Admin extends CI_Controller
 
 	public function addRegional()
 	{
-		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{2,}+$/]|trim');
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]+$/]|trim');
 		$this->form_validation->set_rules('namaRegional', 'Nama Regional', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
@@ -271,7 +271,7 @@ class Admin extends CI_Controller
 
 	public function editRegional($id)
 	{
-		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|regex_match[/^[A-Z0-9]{2,}+$/]|min_length[2]|max_length[5]|trim');
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|regex_match[/^[A-Z0-9]+$/]|min_length[2]|max_length[5]|trim');
 		$this->form_validation->set_rules('namaRegional', 'Nama Regional', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
@@ -327,7 +327,7 @@ class Admin extends CI_Controller
 
 	public function addDatel()
 	{
-		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{2,}+$/]|trim');
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]+$/]|trim');
 		$this->form_validation->set_rules('namaDatel', 'Nama Datel', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
@@ -355,7 +355,7 @@ class Admin extends CI_Controller
 	public function editDatel($id)
 	{
 		
-		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{2,}+$/]|trim');
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|min_length[2]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]+$/]|trim');
 		$this->form_validation->set_rules('namaDatel', 'Nama Datel', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
@@ -409,7 +409,7 @@ class Admin extends CI_Controller
 
 	public function addWitel()
 	{
-		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|min_length[4]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{4,}+$/]|trim');
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|min_length[4]|max_length[5]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]+$/]|trim');
 		$this->form_validation->set_rules('namaWitel', 'Nama Witel', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
@@ -437,7 +437,7 @@ class Admin extends CI_Controller
 	public function editWitel($id)
 	{
 		
-		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|regex_match[/^[A-Z0-9]{4,}+$/]|min_length[4]|max_length[5]|trim');
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|regex_match[/^[A-Za-z0-9]+$/]|min_length[4]|max_length[5]|trim');
 		$this->form_validation->set_rules('namaWitel', 'Nama Witel', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
@@ -491,10 +491,10 @@ class Admin extends CI_Controller
 
 	public function addSpecOLT()
 	{
-		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required|min_length[4]|max_length[6]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{4,}+$/]|trim');
-		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required|regex_match[/^[-a-zA-Z0-9 ]{,50}+$/]|max_length[50]|trim');
-		$this->form_validation->set_rules('merekOLT', 'Merek OLT', 'regex_match[/^[a-zA-Z ]{,20}+$/]|max_length[20]|trim');
-		$this->form_validation->set_rules('typeOLT', 'Type OLT', 'regex_match[/^[.a-zA-Z0-9 ]{,20}+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required|min_length[4]|max_length[6]|is_unique[specification_olt.idSpecOLT]|regex_match[/^[A-Za-z0-9]+$/]|trim');
+		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required|max_length[50]|regex_match[/^[A-Za-z0-9 ]+$/]|trim');
+		$this->form_validation->set_rules('merekOLT', 'Merek OLT', 'regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('typeOLT', 'Type OLT', 'regex_match[/^[.a-zA-Z0-9 ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
@@ -521,10 +521,10 @@ class Admin extends CI_Controller
 	public function editSpecOLT($id)
 	{
 		
-		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required|min_length[4]|max_length[6]|is_unique[regional.idRegional]|regex_match[/^[A-Z0-9]{4,}+$/]|trim');
-		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required|regex_match[/^[-a-zA-Z0-9 ]{,50}+$/]|max_length[50]|trim');
-		$this->form_validation->set_rules('merekOLT', 'Merek OLT', 'regex_match[/^[a-zA-Z ]{,20}+$/]|max_length[20]|trim');
-		$this->form_validation->set_rules('typeOLT', 'Type OLT', 'regex_match[/^[.a-zA-Z0-9 ]{,20}+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('idSpecOLT', 'ID Specification OLT', 'required|min_length[4]|max_length[6]|is_unique[regional.idRegional]|regex_match[/^[A-Za-z0-9]+$/]|trim');
+		$this->form_validation->set_rules('namaSpecOLT', 'Nama Specification OLT', 'required|regex_match[/^[-a-zA-Z0-9 ]+$/]|max_length[50]|trim');
+		$this->form_validation->set_rules('merekOLT', 'Merek OLT', 'regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
+		$this->form_validation->set_rules('typeOLT', 'Type OLT', 'regex_match[/^[.a-zA-Z0-9 ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
