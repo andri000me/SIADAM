@@ -44,12 +44,15 @@
                     <td><?=$data->status?></td>
                     <td class="text-center" width="160px">
                       <form action="<?=site_url('Admin/deletePegawai')?>" method="post">
+                          <a class="btn btn-default btn-xs">
+                            <i class="fa fa-eye"></i>
+                          </a>
                           <a href="<?=site_url('Admin/editPegawai/'.$data->idPegawai)?>" class="btn btn-primary btn-xs">
-                            <i class="fa fa-pencil"></i> Edit 
+                            <i class="fa fa-pencil"></i> 
                           </a>
                           <input type="hidden" name="idPegawai" value="<?=$data->idPegawai?>">
                           <button onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger btn-xs">
-                            <i class="fa fa-trash"></i> Delete 
+                            <i class="fa fa-trash"></i> 
                           </button>
                         </form>
                     </td>
