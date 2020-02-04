@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2020 at 04:29 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Feb 04, 2020 at 08:06 AM
+-- Server version: 10.3.15-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -180,6 +180,47 @@ INSERT INTO `rekap_data_olt` (`hostname`, `ipOLT`, `idSTO`, `idLogicalDevice`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rekap_data_validasi`
+--
+
+CREATE TABLE `rekap_data_validasi` (
+  `tanggal_pelurusan` datetime NOT NULL,
+  `idOndesk` varchar(18) NOT NULL,
+  `idOnsite1` varchar(18) NOT NULL,
+  `idOnsite2` varchar(18) NOT NULL,
+  `idODP` varchar(16) NOT NULL,
+  `noteODP` varchar(50) DEFAULT NULL,
+  `QRODP` varchar(16) DEFAULT NULL,
+  `koordinatODP` varchar(25) DEFAULT NULL,
+  `hostname` varchar(16) NOT NULL,
+  `portOLT` varchar(10) DEFAULT NULL,
+  `totalIN` varchar(2) DEFAULT NULL,
+  `kapasitasODP` varchar(2) DEFAULT NULL,
+  `portOutSplitter` varchar(8) DEFAULT NULL,
+  `QROutSplitter` varchar(16) DEFAULT NULL,
+  `portODP` varchar(2) DEFAULT NULL,
+  `statusportODP` varchar(35) DEFAULT NULL,
+  `ONU` varchar(25) DEFAULT NULL,
+  `serialNumber` varchar(25) DEFAULT NULL,
+  `serviceNumber` varchar(16) DEFAULT NULL,
+  `QRDropCore` varchar(40) DEFAULT NULL,
+  `noteDropCore` varchar(75) DEFAULT NULL,
+  `flagOLTPort` varchar(30) DEFAULT NULL,
+  `ODPtoOLT` varchar(40) DEFAULT NULL,
+  `ODPtoONT` varchar(35) DEFAULT NULL,
+  `RFS` varchar(35) DEFAULT NULL,
+  `noteHDDaman` varchar(75) DEFAULT NULL,
+  `updateDateUIM` datetime DEFAULT NULL,
+  `updaterUIM` varchar(18) DEFAULT 'NULL',
+  `noteQRODP` varchar(45) DEFAULT NULL,
+  `noteQROutSplitter` varchar(45) DEFAULT NULL,
+  `noteQRDropCore` varchar(45) DEFAULT NULL,
+  `updaterDava` varchar(18) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `specification_olt`
 --
 
@@ -196,7 +237,7 @@ CREATE TABLE `specification_olt` (
 --
 
 INSERT INTO `specification_olt` (`idSpecOLT`, `namaSpecOLT`, `merekOLT`, `typeOLT`, `keterangan`) VALUES
-('spec1', 'ZTE ZXA10 C300 Logical Device', 'merk1', 'type1', NULL),
+('spec1', 'ZTE ZXA10 C300 Logical Device', 'ZTE', 'C300', ''),
 ('spec2', 'Alcatel-Lucent 7360 FX-16 Logical Device', 'merk3', '', NULL);
 
 -- --------------------------------------------------------
@@ -262,7 +303,8 @@ CREATE TABLE `witel` (
 
 INSERT INTO `witel` (`idWitel`, `namaWitel`, `keterangan`) VALUES
 ('WTL4', 'Semaranga', ''),
-('WTL5', 'Singotoro', 'kuy\r\n');
+('WTL5', 'Singotoro', 'kuy\r\n'),
+('WTL6', 'Jakarta', 'New');
 
 --
 -- Indexes for dumped tables
@@ -316,59 +358,7 @@ ALTER TABLE `rekap_data_olt`
 -- Indexes for table `specification_olt`
 --
 ALTER TABLE `specification_olt`
-  ADD PRIMARY KEY (`idSpecOLT`),
-  ADD KEY `type` (`typeOLT`),
-  ADD KEY `merek` (`merekOLT`);
-
---
--- Indexes for table `sto`
---
-ALTER TABLE `sto`
-  ADD PRIMARY KEY (`idSTO`);
-
---
--- Indexes for table `type_olt`
---
-ALTER TABLE `type_olt`
-  ADD PRIMARY KEY (`idTypeOLT`),
-  ADD UNIQUE KEY `typeOLT` (`typeOLT`);
-
---
--- Indexes for table `witel`
---
-ALTER TABLE `witel`
-  ADD PRIMARY KEY (`idWitel`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `pegawai`
---
-ALTER TABLE `pegawai`
-  MODIFY `idPegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `rekap_data_odp`
---
-ALTER TABLE `rekap_data_odp`
-  ADD CONSTRAINT `STOtomat` FOREIGN KEY (`idSTO`) REFERENCES `sto` (`idSTO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `datel` FOREIGN KEY (`idDatel`) REFERENCES `datel` (`idDatel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `region` FOREIGN KEY (`idRegional`) REFERENCES `regional` (`idRegional`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `witel` FOREIGN KEY (`idWitel`) REFERENCES `witel` (`idWitel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `rekap_data_olt`
---
-ALTER TABLE `rekap_data_olt`
-  ADD CONSTRAINT `sentralTO` FOREIGN KEY (`idSTO`) REFERENCES `sto` (`idSTO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `spec` FOREIGN KEY (`idSpecOLT`) REFERENCES `specification_olt` (`idSpecOLT`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `sto` FOREIGN KEY (`idSTO`) REFERENCES `sto` (`idSTO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD PRIMARY KEY (`idSpecOLT`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

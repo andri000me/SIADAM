@@ -28,7 +28,7 @@
                     <div class="form-group <?=form_error('idSpecOLT') ? 'has-error' : null?>">
                         <label>ID Datel *</label>
                         <input type="hidden" name="idSpecOLT" value="<?=$row->idSpecOLT?>">
-                        <input type="text" name="idSpecOLT" value="<?=$this->input->post('idSpecOLT') ?? $row->idSpecOLT?>" class="form-control"> 
+                        <input type="text" name="idSpecOLT" value="<?=$this->input->post('idSpecOLT') ?? $row->idSpecOLT?>" class="form-control" disabled> 
                         <?=form_error('idSpecOLT')?>
                     </div>
                     <div class="form-group <?=form_error('namaSpecOLT') ? 'has-error' : null?>">
