@@ -13,12 +13,12 @@ body {
 
 .skin-blue-light .main-header .navbar {
   background-color: #ffffff;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05), 
-                0 2px 4px rgba(0,0,0,0.05), 
-                0 4px 8px rgba(0,0,0,0.05), 
-                0 8px 16px rgba(0,0,0,0.05),
-                0 16px 32px rgba(0,0,0,0.05), 
-                0 32px 64px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.01), 
+                0 2px 4px rgba(0,0,0,0.01), 
+                0 4px 8px rgba(0,0,0,0.01), 
+                0 8px 16px rgba(0,0,0,0.01),
+                0 16px 32px rgba(0,0,0,0.01), 
+                0 32px 64px rgba(0,0,0,0.01);
 }
 .skin-blue-light .main-header .navbar .nav > li > a {
   color: rgb(0, 0, 0);
@@ -60,7 +60,8 @@ body {
 }
 /* logo siadam */
 .skin-blue-light .main-header .logo {
-  background-color: #D71C32;
+  background: rgb(194,25,46);
+  background: linear-gradient(90deg, rgba(194,25,46,1) 0%, rgba(236,30,55,1) 100%, rgba(239,70,91,1) 100%);
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
@@ -85,7 +86,8 @@ body {
 .skin-blue-light .wrapper,
 .skin-blue-light .main-sidebar,
 .skin-blue-light .left-side {
-  background-color: #EC1E37;
+  background: rgb(194,25,46);
+  background: linear-gradient(90deg, rgba(194,25,46,1) 0%, rgba(236,30,55,1) 100%, rgba(239,70,91,1) 100%);
 }
 /* border sidebar */
 .skin-blue-light .main-sidebar {
@@ -104,8 +106,10 @@ body {
 }
 /* settings */
 .skin-blue-light .sidebar-menu > li.header {
+  margin-top: 30px;
   color: #d6d6d6;
-  background: #C2192E;
+  background: rgb(194,25,46);
+  background: linear-gradient(90deg, rgba(194,25,46,1) 0%, rgba(236,30,55,1) 100%, rgba(239,70,91,1) 100%);
 }
 .skin-blue-light .sidebar-menu > li > a {
   border-left: 3px solid transparent;
@@ -127,11 +131,12 @@ body {
 }
 /* kalo di pencet treeviewnya */
 .skin-blue-light .sidebar-menu > li > .treeview-menu {
-  background: #D71C32;
+  background: rgb(194,25,46);
+  background: linear-gradient(90deg, rgba(194,25,46,1) 0%, rgba(215,28,50,1) 100%, rgba(215,28,50,1) 100%);
 }
 /* color font color */
 .skin-blue-light .sidebar a {
-  color: #f1f1f1;
+  color: #ffffff;
 }
 .skin-blue-light .sidebar a:hover {
   text-decoration: none;
@@ -191,6 +196,7 @@ body {
 }
 /* border footer */
 .skin-blue-light .main-footer {
+  font-size: small;
   border-top-color: #d2d6de;
 }
 .skin-blue.layout-top-nav .main-header > .logo {

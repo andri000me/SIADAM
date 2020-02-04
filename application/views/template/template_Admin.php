@@ -125,7 +125,7 @@
     <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <!-- <li class="header"></li> -->
+        <li class="header"></li>
         <li class="treeview">
           <a href="<?=site_url('dashboard')?>">
             <i class="fa fa-bar-chart"></i> <span>Dashboard</span>
