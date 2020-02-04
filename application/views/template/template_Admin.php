@@ -134,8 +134,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url()?>assets/index.html"><i class="fa fa-filter fa-fw mr-3"></i>  Filtering</a></li>
-            <li><a href="<?=base_url()?>assets/index2.html"><i class="fa fa-pie-chart fa-fw mr-3"></i>  Chart</a></li>
+            <li><a href="<?=base_url()?>dashboard/filtering"><i class="fa fa-filter fa-fw mr-3"></i>  Filtering</a></li>
+            <li><a href="<?=base_url()?>dashboard/chart"><i class="fa fa-pie-chart fa-fw mr-3"></i>  Chart</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -166,7 +166,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-cube fa-fw mr-3"></i> Data ODP</a></li>
+            <li><a href="<?=site_url('Admin/getODP')?>"><i class="fa fa-cube fa-fw mr-3"></i> Data ODP</a></li>
             <li><a href="#"><i class="fa fa-sitemap fa-fw mr-3"></i> Data Port ODP</a></li>
         </ul>
         </li>
@@ -227,7 +227,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2020 <a href="https://adminlte.io">Telkom Witel Semarang</a>.</strong> All rights
+    <strong>Copyright &copy; 2020 <a href="https://www.telkom.co.id/">Telkom Witel Semarang</a>.</strong> All rights
     reserved.
   </footer>
 

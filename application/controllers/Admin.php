@@ -27,6 +27,7 @@ class Admin extends CI_Controller
 		check_not_login();
 		//check admin buat fungsi_helper
 		check_admin();
+		$this->load->model('ODP_model');
 		$this->load->model('Pegawai_model');
 		$this->load->model('Regional_model');
 		$this->load->model('STO_model');
@@ -564,6 +565,125 @@ class Admin extends CI_Controller
 		}
 		echo "<script>window.location='".site_url('Admin/getSpecOLT')."';</script>";
 	}
+
+	// START ODP
+	public function getODP()
+	{
+		$data['row'] = $this->ODP_model->getDataODP();
+		$this->template->load('template/template_Admin', 'odp/odp_data', $data);
+	}
+
+	public function addODP()
+	{
+		$this->form_validation->set_rules('idNOSS', 'ID Noss', 'required|trim');
+		$this->form_validation->set_rules('indexODP', 'index ODP', 'required|trim');
+		$this->form_validation->set_rules('idODP', 'ID ODP', 'required|trim');
+		$this->form_validation->set_rules('ftp', 'FTP', 'required|trim');
+		$this->form_validation->set_rules('latitude', 'Latitude', 'required|trim');
+		$this->form_validation->set_rules('longitude', 'Longitude', 'required|trim');
+		$this->form_validation->set_rules('clusterName', 'Cluster Name', 'required|trim');
+		$this->form_validation->set_rules('clusterStatus', 'Cluster Status', 'required|trim');
+		$this->form_validation->set_rules('avai', 'Available', 'required|trim');
+		$this->form_validation->set_rules('used', 'Used', 'required|trim');
+		$this->form_validation->set_rules('rsv', 'RSV', 'required|trim');
+		$this->form_validation->set_rules('rsk', 'RSK', 'required|trim');
+		$this->form_validation->set_rules('total', 'Total', 'required|trim');
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|trim');
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|trim');
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|trim');
+		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|trim');
+		$this->form_validation->set_rules('infoODP', 'Info ODP', 'required|trim');
+		$this->form_validation->set_rules('updateDate', 'Update Date', 'required|trim');
+				
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter dan numerik');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->template->load('template/template_Admin', 'odp/odp_form_add');
+		} else {
+			$post = $this->input->post(null, TRUE);
+			$this->ODP_model->addDataODP($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getODP')."';</script>";
+		}
+	}
+
+	public function editODP($id)
+	{
+		
+		$this->form_validation->set_rules('idNOSS', 'ID Noss', 'required|trim');
+		$this->form_validation->set_rules('indexODP', 'index ODP', 'required|trim');
+		$this->form_validation->set_rules('idODP', 'ID ODP', 'required|trim');
+		$this->form_validation->set_rules('ftp', 'FTP', 'required|trim');
+		$this->form_validation->set_rules('latitude', 'Latitude', 'required|trim');
+		$this->form_validation->set_rules('longitude', 'Longitude', 'required|trim');
+		$this->form_validation->set_rules('clusterName', 'Cluster Name', 'required|trim');
+		$this->form_validation->set_rules('clusterStatus', 'Cluster Status', 'required|trim');
+		$this->form_validation->set_rules('avai', 'Available', 'required|trim');
+		$this->form_validation->set_rules('used', 'Used', 'required|trim');
+		$this->form_validation->set_rules('rsv', 'RSV', 'required|trim');
+		$this->form_validation->set_rules('rsk', 'RSK', 'required|trim');
+		$this->form_validation->set_rules('total', 'Total', 'required|trim');
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|trim');
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|trim');
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|trim');
+		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|trim');
+		$this->form_validation->set_rules('infoODP', 'Info ODP', 'required|trim');
+		$this->form_validation->set_rules('updateDate', 'Update Date', 'required|trim');
+
+		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
+		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
+		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
+		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
+		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
+		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) {
+			$query = $this->ODP_model->getDataODP($id);
+			if($query->num_rows() > 0) { 
+				$data['row'] = $query->row();
+		$this->template->load('template/template_Admin', 'odp/odp_form_edit', $data);
+			} else {
+				echo "<script>alert('Data tidak ditemukan');";
+				echo "window.location='".site_url('Admin/getODP')."';</script>";
+			}
+		} else {
+			$post = $this->input->post(null, TRUE);
+			$this->ODP_model->editDataODP($post);
+			if($this->db->affected_rows() > 0) {
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('Admin/getODP')."';</script>";
+		}
+	}
+
+	public function deleteODP()
+	{
+		$id = $this->input->post('idODP');
+		$this->ODP_model->deleteDataODP($id);
+
+		if($this->db->affected_rows() > 0) {
+			echo "<script>alert('Data berhasil dihapus');</script>";
+		}
+		echo "<script>window.location='".site_url('Admin/getODP')."';</script>";
+	}
+
+	public function detail($id) 
+	{
+		
+	}
+	// END ODP
 
 }
 
