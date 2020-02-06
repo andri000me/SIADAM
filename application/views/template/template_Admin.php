@@ -17,10 +17,15 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/skin-blue-light.css">
+  <!-- icon -->
+  <link rel="icon" type="image/png" sizes="48x48" href="<?php echo base_url('assets/img/') . 'siadampng.png'?>">
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+  <script src="<?php echo base_url(); ?>asset/jquery.min.js"></script>
+
 
   <!-- Google Font -->
   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700,300italic,400italic,600italic" > -->
@@ -88,13 +93,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?=base_url()?>assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?=base_url()?>assets/dist/img/siadampng.png" class="user-image" alt="User Image">
               <span class="hidden-xs"><?=$this->fungsi->user_login()->username?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?=base_url()?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?=base_url()?>assets/dist/img/siadampng.png" class="img-circle" alt="User Image">
 
                 <p>
                 <?=$this->fungsi->user_login()->namaPegawai?>
@@ -250,6 +255,42 @@
 $(document).ready(function() {
   $('#table1').DataTable()
 })
+</script>
+
+<script>
+$(document).ready(function(){
+
+	load_data();
+
+	function load_data()
+	{
+		$.ajax({
+			url:"<?php echo base_url(); ?>excel_import/fetch",
+			method:"POST",
+			success:function(data){
+				$('#customer_data').html(data);
+			}
+		})
+	}
+
+	$('#import_form').on('submit', function(event){
+		event.preventDefault();
+		$.ajax({
+			url:"<?php echo base_url(); ?>excel_import/import",
+			method:"POST",
+			data:new FormData(this),
+			contentType:false,
+			cache:false,
+			processData:false,
+			success:function(data){
+				$('#file').val('');
+				load_data();
+				alert(data);
+			}
+		})
+	});
+
+});
 </script>
 
 </body>

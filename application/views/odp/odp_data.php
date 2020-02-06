@@ -18,7 +18,7 @@
             <a href="#" class="btn btn-danger btn-flat">
                 <i class="fa fa-upload  "></i> Export 
             </a>
-            <a href="#" class="btn btn-success btn-flat">
+            <a href="<?=site_url('Import_ODP/form')?>" class="btn btn-success btn-flat">
                 <i class="fa fa-download"></i> Import 
             </a>
             <a href="<?=site_url('Admin/addODP')?>" class="btn btn-primary btn-flat">
@@ -28,7 +28,7 @@
       </div>
       <div class="box-body table-responsive">
       <!-- id="table1" buat searching pagination dan row -->
-          <table class="table table-bordered table-striped" id="table1">
+          <table class="table table-bordered table-striped"  border="1" cellpadding="8" id="table1">
               <thead>
                 <tr>
                     <th>ID NOSS</th>
@@ -92,7 +92,8 @@
                     </td>
                 </tr>
                 <?php
-                } ?>
+                } 
+              ?>
               </tbody>
           </table>
       </div>
