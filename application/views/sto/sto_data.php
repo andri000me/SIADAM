@@ -26,6 +26,7 @@
               <thead>
                 <tr>
                     <th>ID STO</th>
+                    <th>Kode STO</th>
                     <th>Nama STO</th>
                     <th>Keterangan</th>
                     <th>Actions</th>
@@ -36,6 +37,7 @@
                 foreach($row->result() as $key => $data) { ?>
                 <tr>
                     <td><?=$data->idSTO?></td>
+                    <td><?=$data->kodeSTO?></td>
                     <td><?=$data->namaSTO?></td>
                     <td><?=$data->keterangan?></td>
                     <td class="text-center" width="160px">

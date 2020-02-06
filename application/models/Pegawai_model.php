@@ -57,7 +57,7 @@ class Pegawai_model extends CI_Model {
         $params['namaPegawai'] = html_escape($post['namaPegawai']);
         $params['username'] = html_escape($post['username']);
         if(!empty($post['password'])) {
-          html_escape($post['password']);
+          $params['password'] = html_escape($post['password']);
         }
         $params['status'] = html_escape($post['status']);
         $this->db->where('idPegawai', $post['idPegawai']);

@@ -28,6 +28,13 @@ class Datel_model extends CI_Model {
         $query = $this->db->get();
         return $query;
   }
+  
+  public function getAllDatel(){
+
+    $this->db->from('datel');
+    $query = $this->db->get();
+    return $query;
+  }
 
   public function addDataDatel($post)
     {

@@ -27,19 +27,29 @@ class STO_model extends CI_Model {
         $query = $this->db->get();
         return $query;
   }
+  
 
   public function addDataSTO($post)
     {
-        $params['idSTO'] = html_escape($post['idSTO']);
+        $params['kodeSTO'] = html_escape(strtoupper($post['kodeSTO']));
         $params['namaSTO'] = html_escape($post['namaSTO']);
         $params['keterangan'] = html_escape($post['keterangan']);
+        $params['idDatel']= html_escape($post['datel']);
         $this->db->insert('sto', $params);
     }
 
     public function editDataSTO($post)
     {
-        $params['namaSTO'] = html_escape($post['namaSTO']);
-        $params['keterangan'] = html_escape($post['keterangan']);
+      $this->db->select('kodeSTO');
+      $this->db->from('sto');
+      $this->db->where('kodeSTO', $post['kodeSTO']);
+      $query = $this->db->get();
+      if(($post['kodeSTO']) != $query ) {
+        $params['kodeSTO'] = html_escape(strtoupper($post['kodeSTO']));
+      }
+      $params['namaSTO'] = html_escape($post['namaSTO']);
+      $params['keterangan'] = html_escape($post['keterangan']);
+      // $params['idDatel']= html_escape($post['datel']);
         $this->db->where('idSTO', $post['idSTO']);
         $this->db->update('sto', $params);
     }
