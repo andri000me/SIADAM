@@ -163,21 +163,24 @@ class Admin extends CI_Controller
 
 	public function addSTO()
 	{
-		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|min_length[3]|max_length[5]|is_unique[sto.idSTO]|regex_match[/^[A-Z]+$/]|trim');
+		$datel['row'] = $this->Datel_model->getAllDatel();
+		$this->form_validation->set_rules('kodeSTO', 'Kode STO', 'required|min_length[3]|max_length[5]|is_unique[sto.kodeSTO]|regex_match[/^[A-Za-z]+$/]|trim');
 		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
+		$this->form_validation->set_rules('datel', 'Datel', 'required|trim');
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
 		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
 		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
-		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
+		$this->form_validation->set_message('regex_match', '{field} tidak sesuai format');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
 		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
+
 		if ($this->form_validation->run() == FALSE) {
-			$this->template->load('template/template_Admin', 'sto/sto_form_add');
+			$this->template->load('template/template_Admin', 'sto/sto_form_add',$datel);
 		} else {
 			$post = $this->input->post(null, TRUE);
 			$this->STO_model->addDataSTO($post);
@@ -189,15 +192,17 @@ class Admin extends CI_Controller
 	}
 
 	public function editSTO($id)
-	{
-		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|regex_match[/^[A-Z]+$/]|min_length[3]|max_length[5]|trim');
+	{	
+		$data['row'] = $this->Datel_model->getDataDatel();
+		$this->form_validation->set_rules('kodeSTO', 'Kode STO', 'required|min_length[3]|max_length[5]|regex_match[/^[A-Za-z]+$/]|trim');
 		$this->form_validation->set_rules('namaSTO', 'Nama STO', 'required|regex_match[/^[a-zA-Z ]+$/]|max_length[20]|trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|alpha_dash');
+		
 
 		$this->form_validation->set_message('required', '%s masih kosong, silahkan isi');
 		$this->form_validation->set_message('min_length', '%s minimal %s karakter');
 		$this->form_validation->set_message('max_length', '%s maksimal %s karakter');
-		$this->form_validation->set_message('regex_match', '{field} berisi karakter');
+		$this->form_validation->set_message('regex_match', '{field} tidak sesuai format');
 		$this->form_validation->set_message('is_unique', '{field} sudah dipakai, silahkan ganti');
 		$this->form_validation->set_message('alpha_dash', '{field} berisi karakter, simbol dan numerik');
 

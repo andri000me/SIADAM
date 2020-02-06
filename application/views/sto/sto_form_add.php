@@ -8,7 +8,6 @@
     <li class="active">STO</li>
   </ol>
 </section>
-
 <!-- Main content -->
 <section class="content">
 
@@ -27,9 +26,9 @@
                 <?php //echo validation_errors() ?>
                 <form action="" method="post"> 
                     <div class="form-group <?=form_error('idSTO') ? 'has-error' : null ?>">
-                        <label>ID STO *</label>
-                        <input type="text" name="idSTO" value="<?=set_value('idSTO')?>" class="form-control"> 
-                        <?=form_error('idSTO')?>
+                        <label>Kode STO *</label>
+                        <input type="text" name="kodeSTO" value="<?=set_value('kodeSTO')?>" class="form-control"  placeholder="Format ex: SMC"> 
+                        <?=form_error('kodeSTO')?>
                     </div>
                     <div class="form-group <?=form_error('namaSTO') ? 'has-error' : null ?>">
                         <label>Nama STO *</label>
@@ -38,11 +37,22 @@
                     </div>
                     <div class="form-group <?=form_error('keterangan') ? 'has-error' : null ?>">
                         <label>Keterangan</label>
-                        <textarea name="keterangan" class="form-control" rows="3" value="<?=set_value('keterangan')?>" ></textarea>
+                        <textarea name="keterangan" class="form-control" rows="3" ><?=set_value('keterangan')?></textarea>
                         <?=form_error('keterangan')?>
                     </div>
+                    <div class="form-group <?=form_error('datel') ? 'has-error' : null ?>">
+                        <label>Datel *</label>
+                        <select name="datel" class="form-control">
+                            <option value="" selected="selected">- Pilih Datel -</option>
+                            <?php foreach($row->result() as $key => $datel) {?>
+                              <option value="<?=$datel->idDatel?>" <?=set_value('datel') == $datel->idDatel ? "selected" : null?>><?=$datel->namaDatel?>
+                              </option>
+                            <?php }?>
+                        </select>
+                        <?=form_error('datel')?>
+                    </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-flat">
+                        <button name="submit" type="submit" class="btn btn-success btn-flat">
                             <i class="fa fa-paper-plane"></i> Simpan
                         </button>
                         <button type="reset" class="btn btn-flat">Reset</button>
