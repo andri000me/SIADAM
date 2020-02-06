@@ -3,7 +3,7 @@
   <title>Form Import</title>
   
   <!-- Load File jquery.min.js yang ada difolder js -->
-  <script src="<?php echo base_url('js/jquery.min.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/jquery.min.js'); ?>"></script>
   
   <script>
   $(document).ready(function(){
@@ -16,7 +16,7 @@
   <h3>Form Import</h3>
   <hr>
   
-  <a href="<?php echo base_url("excel/Book1.xlsx"); ?>">Download Format</a>
+  <a href="<?php echo base_url("excel/default.xlsx"); ?>">Download Format</a>
   <br>
   <br>
   
@@ -73,7 +73,6 @@
         <th>ID STO</th>
         <th>Info ODP</th>
         <th>Update Date</th>
-        <th>Actions</th>
     </tr>";
     
     $numrow = 1;
@@ -184,7 +183,7 @@
       
       // Buat sebuah tombol untuk mengimport data ke database
       echo "<button type='submit' name='import'>Import</button>";
-      echo "<a href='".base_url("Import_ODP")."'>Cancel</a>";
+      echo "<a href='".base_url("admin/getODP")."'>Cancel</a>";
     }
     
     echo "</form>";

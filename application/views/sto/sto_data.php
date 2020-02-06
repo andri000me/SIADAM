@@ -12,51 +12,60 @@
 <section class="content">
 
   <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Data STO</h3>
-        <div class="pull-right">
-            <a href="<?=site_url('Admin/addSTO')?>" class="btn btn-primary btn-flat">
-                <i class="fa fa-user-plus"></i> Create 
-            </a>
-        </div>
+    <div class="box-header">
+      <h3 class="box-title">Data STO</h3>
+      <div class="pull-right">
+        <a href="<?= site_url('Admin/addSTO') ?>" class="btn btn-primary btn-flat">
+          <i class="fa fa-user-plus"></i> Create
+        </a>
       </div>
-      <div class="box-body table-responsive">
+    </div>
+    <div class="box-body table-responsive">
       <!-- id="table1" buat searching pagination dan row -->
-          <table class="table table-bordered table-striped" id="table1">
-              <thead>
-                <tr>
-                    <th>ID STO</th>
-                    <th>Kode STO</th>
-                    <th>Nama STO</th>
-                    <th>Keterangan</th>
-                    <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $no = 1;
-                foreach($row->result() as $key => $data) { ?>
-                <tr>
-                    <td><?=$data->idSTO?></td>
-                    <td><?=$data->kodeSTO?></td>
-                    <td><?=$data->namaSTO?></td>
-                    <td><?=$data->keterangan?></td>
-                    <td class="text-center" width="160px">
-                      <form action="<?=site_url('Admin/deleteSTO')?>" method="post">
-                          <a href="<?=site_url('Admin/editSTO/'.$data->idSTO)?>" class="btn btn-primary btn-xs">
-                            <i class="fa fa-pencil"></i> Edit 
-                          </a>
-                          <input type="hidden" name="idSTO" value="<?=$data->idSTO?>">
-                          <button onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger btn-xs">
-                            <i class="fa fa-trash"></i> Delete 
-                          </button>
-                        </form>
-                    </td>
-                </tr>
-                <?php
-                } ?>
-              </tbody>
-          </table>
-      </div>
+      <table class="table table-bordered table-striped" id="table1">
+        <thead>
+          <tr>
+            <th>ID STO</th>
+            <th>Kode STO</th>
+            <th>Nama STO</th>
+            <th>Keterangan</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php $no = 1;
+          foreach ($row->result() as $key => $data) { ?>
+            <tr>
+              <td><?= $data->idSTO ?></td>
+              <td><?= $data->kodeSTO ?></td>
+              <td><?= $data->namaSTO ?></td>
+              <td><?= $data->keterangan ?></td>
+              <td class="text-center" width="160px">
+                <form action="<?= site_url('Admin/deleteSTO') ?>" method="post">
+                  <a href="<?= site_url('Admin/editSTO/' . $data->idSTO) ?>" class="btn btn-primary btn-xs">
+                    <i class="fa fa-pencil"></i> Edit
+                  </a>
+                  <input type="hidden" name="idSTO" value="<?= $data->idSTO ?>">
+                  <button onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger btn-xs">
+                    <i class="fa fa-trash"></i> Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <?php
+          } ?>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>ID STO</th>
+            <th>Kode STO</th>
+            <th>Nama STO</th>
+            <th>Keterangan</th>
+            <th>Actions</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
 
 </section>

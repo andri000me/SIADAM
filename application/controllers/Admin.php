@@ -35,7 +35,7 @@ class Admin extends CI_Controller
 		$this->load->model('Witel_model');
 		$this->load->model('SpecOLT_model');
 		$this->load->library('form_validation');
-		$this->load->library('excel');
+		//$this->load->library('excel');
   }
 
   // Halaman Awal Admin
@@ -579,7 +579,7 @@ class Admin extends CI_Controller
 
 	function importODP()
 	{
-		$this->template->load('template/template_Admin','odp/odp_form_import');
+		$this->load->view('form', $data);
 	}
 	
 	function fetch()
@@ -715,11 +715,11 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('rsv', 'RSV', 'required|trim');
 		$this->form_validation->set_rules('rsk', 'RSK', 'required|trim');
 		$this->form_validation->set_rules('total', 'Total', 'required|trim');
-		$this->form_validation->set_rules('idRegional', 'ID Regional', 'required|trim');
-		$this->form_validation->set_rules('idWitel', 'ID Witel', 'required|trim');
-		$this->form_validation->set_rules('idDatel', 'ID Datel', 'required|trim');
-		$this->form_validation->set_rules('idSTO', 'ID STO', 'required|trim');
-		$this->form_validation->set_rules('infoODP', 'Info ODP', 'required|trim');
+		$this->form_validation->set_rules('idRegional', 'ID Regional', 'trim');
+		$this->form_validation->set_rules('idWitel', 'ID Witel', 'trim');
+		$this->form_validation->set_rules('idDatel', 'ID Datel', 'trim');
+		$this->form_validation->set_rules('idSTO', 'ID STO', 'trim');
+		$this->form_validation->set_rules('infoODP', 'Info ODP', 'trim');
 		$this->form_validation->set_rules('updateDate', 'Update Date', 'required|trim');
 				
 

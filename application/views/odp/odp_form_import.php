@@ -25,8 +25,8 @@
          <div class="row">
              <div class="col-md-4 col-md-offset-4">
                 <?php //echo validation_errors() ?>
-                <form action="" method="post"> 
-                   <form method="post" id="import_form" enctype="multipart/form-data">
+                <form > 
+                   <form action="" method="post" id="import_form" enctype="multipart/form-data">
                       <p><label>Select Excel File</label>
                       <input type="file" name="file" id="file" required accept=".xls, .xlsx" /></p>
                       <br />

@@ -6,11 +6,11 @@ class Import_ODP extends CI_Controller {
   public function __construct(){
     parent::__construct();
     
-    $this->load->model('ODP_model');
+    $this->load->model('Import_ODP_model');
   }
   
   public function index(){
-    $data['rekap_data_odp'] = $this->ODP_model->view();
+    $data['rekap_data_odp'] = $this->Import_ODP_model->view();
     $this->load->view('view', $data);
   }
   
@@ -19,11 +19,11 @@ class Import_ODP extends CI_Controller {
     
     if(isset($_POST['preview'])){ // Jika user menekan tombol Preview pada form
       // lakukan upload file dengan memanggil function upload yang ada di SiswaModel.php
-      $upload = $this->ODP_model->upload_file($this->filename);
+      $upload = $this->Import_ODP_model->upload_file($this->filename);
       
       if($upload['result'] == "success"){ // Jika proses upload sukses
         // Load plugin PHPExcel nya
-        include APPPATH.'libraries/PHPExcel/PHPExcel.php';
+        include APPPATH.'libraries/PHPExcel.php';
         
         $excelreader = new PHPExcel_Reader_Excel2007();
         $loadexcel = $excelreader->load('excel/'.$this->filename.'.xlsx'); // Load file yang tadi diupload ke folder excel
@@ -36,13 +36,13 @@ class Import_ODP extends CI_Controller {
         $data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
       }
     }
-    
+		// $this->template->load('template/template_Admin', 'form', $data);
     $this->load->view('form', $data);
   }
   
   public function import(){
     // Load plugin PHPExcel nya
-    include APPPATH.'libraries/PHPExcel/PHPExcel.php';
+    include APPPATH.'libraries/PHPExcel.php';
     
     $excelreader = new PHPExcel_Reader_Excel2007();
     $loadexcel = $excelreader->load('excel/'.$this->filename.'.xlsx'); // Load file yang telah diupload ke folder excel
@@ -62,22 +62,22 @@ class Import_ODP extends CI_Controller {
                 'idNOSS'            =>  $row['A'],
                 'indexODP'          =>  $row['B'],
                 'idODP'             =>  $row['C'],
-                'ftp'               =>  $row['D'],
-                'latitude'          =>  $row['E'],
-                'longitude'         =>  $row['F'],
-                'clusterName'       =>  $row['G'],
-                'clusterStatus'     =>  $row['H'],
-                'avai'              =>  $row['I'],
-                'used'              =>  $row['J'],
-                'rsv'               =>  $row['K'],
-                'rsk'               =>  $row['L'],
-                'total'             =>  $row['M'],
-                'idRegional'        =>  $row['N'],
-                'idWitel'           =>  $row['O'],
-                'idDatel'           =>  $row['P'],
-                'idSTO'             =>  $row['Q'],
-                'infoODP'           =>  $row['R'],
-                'updateDate'        =>  $row['S']
+                'ftp'               =>  $row['E'],
+                'latitude'          =>  $row['F'],
+                'longitude'         =>  $row['G'],
+                'clusterName'       =>  $row['H'],
+                'clusterStatus'     =>  $row['I'],
+                'avai'              =>  $row['J'],
+                'used'              =>  $row['K'],
+                'rsv'               =>  $row['L'],
+                'rsk'               =>  $row['M'],
+                'total'             =>  $row['N'],
+                'idRegional'        =>  $row['O'],
+                'idWitel'           =>  $row['P'],
+                'idDatel'           =>  $row['Q'],
+                'idSTO'             =>  $row['R'],
+                'infoODP'           =>  $row['S'],
+                'updateDate'        =>  $row['T']
             ));
         }
       
@@ -87,7 +87,7 @@ class Import_ODP extends CI_Controller {
     // Panggil fungsi insert_multiple yg telah kita buat sebelumnya di model
     $this->Import_ODP_model->insert_multiple($data);
     
-    redirect("Import_ODP"); // Redirect ke halaman awal (ke controller siswa fungsi index)
+    redirect("Admin/getODP"); // Redirect ke halaman awal (ke controller siswa fungsi index)
   }
 }
 
