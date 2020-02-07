@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2020 at 02:13 AM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Feb 07, 2020 at 09:48 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -171,13 +171,29 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`idPegawai`, `namaPegawai`, `username`, `password`, `status`) VALUES
-('P0000001', 'AdminA', 'admin123', 'admin123', 'Admin'),
-('P0000002', 'OndeskA', 'ondesk123', 'ondesk123', 'Ondesk'),
-('P0000003', 'OnsiteA', 'onsite123', 'onsite123', 'Onsite'),
-('P0000004', 'DamanA', 'daman123', 'daman123', 'Daman'),
-('P0000005', 'HDDamanA', 'hddaman123', 'hddaman123', 'HD Daman'),
-('P0000006', 'SDIA', 'sdi123', 'sdi123', 'SDI'),
-('P0000007', 'DavaA', 'dava123', 'dava123', 'Dava');
+('P0000001', 'Sekar Rini Abidin', 'admin1', 'admin1', 'Admin'),
+('P0000002', 'Nahdatin Hasanah B Jumala', 'admin2', 'admin2', 'Admin'),
+('P0000003', 'Darto', 'daman1', 'daman1', 'Daman'),
+('P0000004', 'Riky Hargiarto', 'daman2', 'daman2', 'Daman'),
+('P0000005', 'Abid Irfan Nuhaa', 'hddaman1', 'hddaman1', 'HD Daman'),
+('P0000006', 'Ardiant Yosa Hastaka', 'hddaman2', 'hddaman2', 'HD Daman'),
+('P0000007', 'Arga Wisnu Nugroho', 'hddaman3', 'hddaman3', 'HD Daman'),
+('P0000008', 'Dhimas Dharu Widyatama', 'hddaman4', 'hddaman4', 'HD Daman'),
+('P0000009', 'Erwin Noor Ardiansyah', 'hddaman5', 'hddaman5', 'HD Daman'),
+('P0000010', 'Faiz Hammam', 'hddaman6', 'hddaman6', 'HD Daman'),
+('P0000011', 'Haris Nur Abdul Azis', 'hddaman7', 'hddaman7', 'HD Daman'),
+('P0000012', 'Himawan Kuncoro', 'hddaman8', 'hddaman8', 'HD Daman'),
+('P0000013', 'Ony Kurnia Jusuf Tehupuring', 'hddaman9', 'hddaman9', 'HD Daman'),
+('P0000014', 'Riyo Dirgantoro', 'hddaman10', 'hddaman10', 'HD Daman'),
+('P0000015', 'Eko Murdiyanto', 'hddaman11', 'hddaman11', 'HD Daman'),
+('P0000016', 'M Farhan Ramadhan', 'hddaman12', 'hddaman12', 'HD Daman'),
+('P0000017', 'Alvian Sandi Pratama', 'amija1', 'amija1', 'Ondesk'),
+('P0000018', 'Herwindra Wicaksana', 'amija2', 'amija2', 'Ondesk'),
+('P0000019', 'M Ginanjar Bagus Faizal', 'amija3', 'amija3', 'Ondesk'),
+('P0000020', 'Wahyu Septiawan', 'amija4', 'amija4', 'Ondesk'),
+('P0000021', 'Bayu Iryanto', 'amija5', 'amija5', 'Onsite'),
+('P0000022', 'Slamet Riyanto', 'amija6', 'amija6', 'Onsite'),
+('P0000023', 'Novan Ardhiansyah', 'amija7', 'amija7', 'Onsite');
 
 --
 -- Triggers `pegawai`
@@ -290,7 +306,13 @@ CREATE TABLE `rekap_data_olt` (
 --
 
 INSERT INTO `rekap_data_olt` (`hostname`, `ipOLT`, `idLogicalDevice`, `idSTO`, `idSpecOLT`) VALUES
-('sdsad', '2123', 'dsad333', 'S0001', NULL);
+('GPON00-D4-KDL-3', '172.22.203.18', '14775007', 'S0008', 'Spec03'),
+('GPON01-D4-BMK-3', '172.22.203.201', '12975107', 'S0003', 'Spec01'),
+('GPON01-D4-JHR-2', ' 172.22.203.49', '12975102', 'S0007', 'Spec05'),
+('GPON02-D4-SMC-3', '172.29.236.40', '14475029', 'S0013', 'Spec04'),
+('GPON02-D4-SSL-5', '172.29.236.8', '15000006', 'S0015', 'Spec02'),
+('GPON07-D4-MJP-3', '172.29.236.43', '129300162', 'S0010', 'Spec07'),
+('GPON11-D4-SMT-2', '172.29.237.229', '105150163', 'S0014', 'Spec06');
 
 -- --------------------------------------------------------
 
@@ -373,7 +395,7 @@ CREATE TABLE `specification_olt` (
   `idSpecOLT` varchar(6) NOT NULL,
   `namaSpecOLT` varchar(50) NOT NULL,
   `merekOLT` varchar(6) NOT NULL,
-  `typeOLT` varchar(6) DEFAULT NULL,
+  `typeOLT` varchar(10) DEFAULT NULL,
   `keterangan` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -383,7 +405,12 @@ CREATE TABLE `specification_olt` (
 
 INSERT INTO `specification_olt` (`idSpecOLT`, `namaSpecOLT`, `merekOLT`, `typeOLT`, `keterangan`) VALUES
 ('Spec01', 'ZTE ZXA10 C300 Logical Device', 'ZTE', 'C300', NULL),
-('Spec02', 'Alcatel-Lucent 7360 FX-16 Logical Device', 'ALU', '', NULL);
+('Spec02', 'Alcatel-Lucent 7360 FX-16 Logical Device', 'ALU', '', NULL),
+('Spec03', 'ZTE ZXA10 C220 Logical Device', 'ZTE', 'C220v1.2', NULL),
+('Spec04', 'ZTE ZXA10 C300 Logical Device', 'ZTE', 'C300v2.0', NULL),
+('Spec05', 'Huawei MA5600T Logical Device', 'HUAWEI', NULL, NULL),
+('Spec06', 'Huawei MA5608T Logical Device', 'HUAWEI', NULL, NULL),
+('Spec07', 'ZTE ZXA10 C320 Logical Device', 'ZTE', 'C320v1.2', NULL);
 
 --
 -- Triggers `specification_olt`
@@ -424,9 +451,24 @@ CREATE TABLE `sto` (
 --
 
 INSERT INTO `sto` (`idSTO`, `kodeSTO`, `namaSTO`, `keterangan`, `idDatel`) VALUES
-('S0001', 'SMT', 'Semarang Tua', '', 'D0002'),
-('S0002', 'SMC', 'Semarang Candi', NULL, 'D0002'),
-('S0003', 'SMB', 'Semarang Barat', 'Test', 'D0002');
+('S0001', 'ABR', 'Ambarawa', '', 'D0003'),
+('S0002', 'BDN', 'Bandungan', '', 'D0003'),
+('S0003', 'BMK', 'Banyumanik', '', 'D0002'),
+('S0004', 'BOJ', 'Boja', '', 'D0001'),
+('S0005', 'BWE', 'Bawen', '', 'D0003'),
+('S0006', 'GNK', 'Genuk', '', 'D0002'),
+('S0007', 'JHR', 'Johar', '', 'D0002'),
+('S0008', 'KDL', 'Kendal', '', 'D0001'),
+('S0009', 'MJE', 'Mijen', '', 'D0002'),
+('S0010', 'MJP', 'Majapahit', '', 'D0002'),
+('S0011', 'MKG', 'Mangkang', '', 'D0002'),
+('S0012', 'SKR', 'Sekaran', '', 'D0002'),
+('S0013', 'SMC', 'Semarang Candi', '', 'D0002'),
+('S0014', 'SMT', 'Semarang Tugu', '', 'D0002'),
+('S0015', 'SSL', 'ssl', '', 'D0003'),
+('S0016', 'UNR', 'Ungaran', '', 'D0003'),
+('S0017', 'WLR', 'Weleri', '', 'D0002'),
+('S0018', 'WNJ', 'Wonodri', '', 'D0002');
 
 --
 -- Triggers `sto`
