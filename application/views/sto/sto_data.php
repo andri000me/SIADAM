@@ -43,11 +43,11 @@
               <td class="text-center" width="160px">
                 <form action="<?= site_url('Admin/deleteSTO') ?>" method="post">
                   <a href="<?= site_url('Admin/editSTO/' . $data->idSTO) ?>" class="btn btn-primary btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-pencil"></i> 
                   </a>
                   <input type="hidden" name="idSTO" value="<?= $data->idSTO ?>">
                   <button onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash"></i> Delete
+                    <i class="fa fa-trash"></i> 
                   </button>
                 </form>
               </td>

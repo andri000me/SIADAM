@@ -41,11 +41,11 @@
               <td class="text-center" width="160px">
                 <form action="<?= site_url('Admin/deleteRegional') ?>" method="post">
                   <a href="<?= site_url('Admin/editRegional/' . $data->idRegional) ?>" class="btn btn-primary btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-pencil"></i>
                   </a>
                   <input type="hidden" name="idRegional" value="<?= $data->idRegional ?>">
                   <button onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash"></i> Delete
+                    <i class="fa fa-trash"></i>
                   </button>
                 </form>
               </td>

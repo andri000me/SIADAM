@@ -28,15 +28,10 @@
                 <form > 
                    <form action="" method="post" id="import_form" enctype="multipart/form-data">
                       <p><label>Select Excel File</label>
-                      <input type="file" name="file" id="file" required accept=".xls, .xlsx" /></p>
-                      <br />
+                      <input type="file" name="file" id="file" required accept=".xls, .xlsx"></p>
                       <p>Unggah file dengan tipe *.xls / .csv</p>
-                      <input type="submit" name="import" value="Import" class="btn btn-success" />
+                      <input type="submit" name="import" value="Import" class="btn btn-success">
                     </form>
-                    <br />
-                    <div class="table-responsive" id="customer_data">
-
-                    </div>
                 </form>
              </div>
          </div>

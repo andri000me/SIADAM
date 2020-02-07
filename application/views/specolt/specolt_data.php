@@ -45,11 +45,11 @@
               <td class="text-center" width="160px">
                 <form action="<?= site_url('Admin/deleteSpecOLT') ?>" method="post">
                   <a href="<?= site_url('Admin/editSpecOLT/' . $data->idSpecOLT) ?>" class="btn btn-primary btn-xs">
-                    <i class="fa fa-pencil"></i> Edit
+                    <i class="fa fa-pencil"></i>
                   </a>
                   <input type="hidden" name="idSpecOLT" value="<?= $data->idSpecOLT ?>">
                   <button onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash"></i> Delete
+                    <i class="fa fa-trash"></i>
                   </button>
                 </form>
               </td>

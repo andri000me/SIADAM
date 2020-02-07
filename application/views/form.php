@@ -82,25 +82,25 @@
     // $sheet adalah variabel yang dikirim dari controller
     foreach($sheet as $row){ 
       // Ambil data pada excel sesuai Kolom
-      $idNOSS            =  $row['A']; // Ambil data NIS
+      $idNOSS            =  $row['A'];
       $indexODP          =  $row['B'];
       $idODP             =  $row['C'];
-      $ftp               =  $row['D'];
-      $latitude          =  $row['E'];
-      $longitude         =  $row['F'];
-      $clusterName       =  $row['G'];
-      $clusterStatus     =  $row['H'];
-      $avai              =  $row['I'];
-      $used              =  $row['J'];
-      $rsv               =  $row['K'];
-      $rsk               =  $row['L'];
-      $total             =  $row['M'];
-      $idRegional        =  $row['N'];
-      $idWitel           =  $row['O'];
-      $idDatel           =  $row['P'];
-      $idSTO             =  $row['Q'];
-      $infoODP           =  $row['R'];
-      $updateDate        =  $row['S'];
+      $ftp               =  $row['E'];
+      $latitude          =  $row['F'];
+      $longitude         =  $row['G'];
+      $clusterName       =  $row['H'];
+      $clusterStatus     =  $row['I'];
+      $avai              =  $row['J'];
+      $used              =  $row['K'];
+      $rsv               =  $row['L'];
+      $rsk               =  $row['M'];
+      $total             =  $row['N'];
+      $idRegional        =  $row['O'];
+      $idWitel           =  $row['P'];
+      $idDatel           =  $row['Q'];
+      $idSTO             =  $row['R'];
+      $infoODP           =  $row['T'];
+      $updateDate        =  $row['U'];
 
       
       // Cek jika semua data tidak diisi

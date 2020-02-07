@@ -42,11 +42,11 @@
                     <td class="text-center" width="160px">
                       <form action="<?=site_url('Admin/deleteWitel')?>" method="post">
                           <a href="<?=site_url('Admin/editWitel/'.$data->idWitel)?>" class="btn btn-primary btn-xs">
-                            <i class="fa fa-pencil"></i> Edit 
+                            <i class="fa fa-pencil"></i>  
                           </a>
                           <input type="hidden" name="idWitel" value="<?=$data->idWitel?>">
                           <button onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger btn-xs">
-                            <i class="fa fa-trash"></i> Delete 
+                            <i class="fa fa-trash"></i>  
                           </button>
                         </form>
                     </td>

@@ -34,8 +34,9 @@ class Admin extends CI_Controller
 		$this->load->model('Datel_model');
 		$this->load->model('Witel_model');
 		$this->load->model('SpecOLT_model');
+		$this->load->model("Import_ODP_model");
 		$this->load->library('form_validation');
-		//$this->load->library('excel');
+		$this->load->library("PHPExcel");
   }
 
   // Halaman Awal Admin
@@ -579,7 +580,7 @@ class Admin extends CI_Controller
 
 	function importODP()
 	{
-		$this->load->view('form', $data);
+		$this->load->view('form');
 	}
 	
 	function fetch()
@@ -608,7 +609,6 @@ class Admin extends CI_Controller
                 <th>ID STO</th>
                 <th>Info ODP</th>
                 <th>Update Date</th>
-                <th>Actions</th>
 			</tr>
 		';
 		foreach($data->result() as $row)

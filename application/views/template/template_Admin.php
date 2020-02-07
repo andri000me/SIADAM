@@ -193,7 +193,7 @@
           <li class="treeview">
             <a href="#">
               <i class="fa fa-archive"></i>
-              <span>kelola Data Pendukung</span>
+              <span>Kelola Data Pendukung</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -210,7 +210,7 @@
             <li class="header">SETTNGS</li>
             <li>
               <a href="<?= site_url('Admin/getPegawai') ?>">
-                <i class="fa fa-user-plus"></i> <span>kelola Data Pegawai</span>
+                <i class="fa fa-user-plus"></i> <span>Kelola Data Pegawai</span>
                 <span class="pull-right-container"></span>
               </a>
             </li>
